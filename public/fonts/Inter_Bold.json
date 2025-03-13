@@ -1,0 +1,52 @@
+{
+  "glyphs": {
+    "K": {
+      "ha": 600,
+      "x_min": 0,
+      "x_max": 600,
+      "o": "m 100 0 l 100 700 l 200 700 l 200 400 l 500 700 l 625 700 l 275 350 l 600 0 l 475 0 l 200 300 l 200 0 l 100 0 z"
+    },
+    "B": {
+      "ha": 600,
+      "x_min": 0,
+      "x_max": 600,
+      "o": "m 100 0 l 100 700 l 350 700 q 125 700 125 575 l 125 525 q 125 450 200 425 q 125 400 125 350 l 125 125 q 125 0 350 0 l 100 0 m 200 400 l 350 400 q 50 400 50 475 l 50 525 q 50 600 350 600 l 200 600 l 200 400 m 200 100 l 200 300 l 350 300 q 50 300 50 200 l 50 125 q 50 100 350 100 l 200 100 z"
+    },
+    "+": {
+      "ha": 600,
+      "x_min": 0,
+      "x_max": 600,
+      "o": "m 250 150 l 250 350 l 50 350 l 50 450 l 250 450 l 250 650 l 350 650 l 350 450 l 550 450 l 550 350 l 350 350 l 350 150 l 250 150 z"
+    }
+  },
+  "familyName": "Inter",
+  "ascender": 800,
+  "descender": -200,
+  "underlinePosition": -100,
+  "underlineThickness": 50,
+  "boundingBox": {
+    "yMin": -200,
+    "xMin": 0,
+    "yMax": 800,
+    "xMax": 600
+  },
+  "resolution": 1000,
+  "original_font_information": {
+    "format": 0,
+    "copyright": "Copyright 2020 The Inter Project Authors",
+    "fontFamily": "Inter",
+    "fontSubfamily": "Bold",
+    "uniqueID": "3.19;RSTY;Inter-Bold",
+    "fullName": "Inter Bold",
+    "version": "3.19",
+    "postScriptName": "Inter-Bold",
+    "manufacturer": "rsms",
+    "designer": "Rasmus Andersson",
+    "manufacturerURL": "https://rsms.me/",
+    "designerURL": "https://rsms.me/",
+    "licence": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL",
+    "licenceURL": "http://scripts.sil.org/OFL"
+  },
+  "cssFontWeight": "bold",
+  "cssFontStyle": "normal"
+}

@@ -1,0 +1,126 @@
+/* Monochrome styles inspired by David Rudnick and modern minimalist design */
+
+.monochrome-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: none;
+}
+
+.monochrome-link {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease;
+  font-size: 1.4em;
+}
+
+.monochrome-link:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Clean, minimal hover effect */
+.monochrome-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: width 0.3s ease;
+}
+
+.monochrome-link:hover::after {
+  width: 100%;
+}
+
+.monochrome-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+.monochrome-label {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+/* Bio section with consistent spacing */
+.bio-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.bio-section > div,
+.bio-section > p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+/* New styles for the typing effect */
+.typing-text {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  margin-left: 2px;
+  margin-right: 4px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Subtle link style for inline text links */
+.monochrome-link-subtle {
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.monochrome-link-subtle::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -1px;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.monochrome-link-subtle:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.monochrome-link-subtle:hover::after {
+  background-color: rgba(255, 255, 255, 0.7);
+}

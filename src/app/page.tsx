@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import FuturisticBackground from "@/components/FuturisticBackground";
 import "./monochrome.css";
 
@@ -9,7 +9,12 @@ export default function Home() {
   const [displayText, setDisplayText] = useState("");
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const phrases = ["UI engineer", "fintech enthusiast", "crypto advocate"];
+
+  // Use useMemo to prevent the phrases array from being recreated on every render
+  const phrases = useMemo(
+    () => ["UI engineer", "fintech enthusiast", "crypto advocate"],
+    []
+  );
 
   useEffect(() => {
     const typingSpeed = 100;
@@ -61,7 +66,8 @@ export default function Home() {
                 </div>
                 <div className="bio-section max-w-2xl mb-12">
                   <p className="monochrome-text text-xl md:text-2xl">
-                    I'm a <span className="typing-text">{displayText}</span>
+                    I&apos;m a{" "}
+                    <span className="typing-text">{displayText}</span>
                     <span className="typing-cursor">|</span>,
                     <br />
                     living and working in{" "}

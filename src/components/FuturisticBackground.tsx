@@ -221,8 +221,6 @@ export default function FuturisticBackground() {
     >[] = [];
     const circleCount = 12;
 
-    const MAX_CIRCLE_RADIUS = 5;
-
     const ambientLight = new THREE.AmbientLight(0x404040, 1.0);
     scene.add(ambientLight);
 
@@ -295,7 +293,6 @@ export default function FuturisticBackground() {
 
     const handleMouseMove = (event: MouseEvent) => {
       const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 
       camera.position.x = mouseX * 5;
       grid.rotation.y = mouseX * 0.1;
@@ -308,7 +305,7 @@ export default function FuturisticBackground() {
 
       const time = Date.now() * 0.001;
 
-      circles.forEach((circle, index) => {
+      circles.forEach(circle => {
         circle.position.x += circle.userData.velocity.x;
         circle.position.y += circle.userData.velocity.y;
         circle.position.z += circle.userData.velocity.z;
@@ -346,7 +343,6 @@ export default function FuturisticBackground() {
 
         if (Math.random() < 0.0008) {
           const animateFlash = () => {
-            const originalColor = circle.material.color.clone();
             const originalEmissive = circle.material.emissive
               ? circle.material.emissive.clone()
               : new THREE.Color(0x000000);

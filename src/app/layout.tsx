@@ -20,7 +20,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Kyle Bolton | UI Engineer",
   description:
-    "Kyle Bolton, a UI engineer, fintech enthusiast, and crypto advocate based in London, UK.",
+    "Kyle Bolton, UI engineer, fintech enthusiast, and crypto advocate based in London, UK.",
   keywords: [
     "Kyle Bolton",
     "UI Engineer",
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://kylebolton.me",
-    title: "Kyle Bolton | UI Engineer & Fintech Enthusiast",
+    title: "Kyle Bolton | UI Engineer",
     description:
-      "Kyle Bolton, a UI engineer, fintech enthusiast, and crypto advocate based in London, UK.",
+      "Kyle Bolton, UI engineer, fintech enthusiast, and crypto advocate based in London, UK.",
     siteName: "Kyle Bolton",
     images: [
       {
@@ -54,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kyle Bolton | UI Engineer & Fintech Enthusiast",
+    title: "Kyle Bolton | UI Engineer",
     description:
-      "Personal website of Kyle Bolton, a UI engineer, fintech enthusiast, and crypto advocate based in London, UK.",
+      "Personal website of Kyle Bolton, UI engineer, fintech enthusiast, and crypto advocate based in London, UK.",
     images: ["/og-image.png"],
   },
   icons: {

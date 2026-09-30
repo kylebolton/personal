@@ -10,7 +10,7 @@ function Icon({ children, ...props }: IconProps) {
       height="24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.25"
       strokeLinecap="square"
       strokeLinejoin="miter"
       aria-hidden="true"
@@ -63,19 +63,23 @@ export function ArrowUpRight(props: IconProps) {
   );
 }
 
-/** Bauhaus mark: circle, square, triangle in the three primaries. */
+/** Reduced construction figure: square, inscribed circle, diagonal, one red point. */
 export function Logo({ colour = true, ...props }: IconProps & { colour?: boolean }) {
   return (
     <svg
-      viewBox="0 0 48 16"
-      width="48"
-      height="16"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1"
       aria-hidden="true"
       {...props}
     >
-      <circle cx="8" cy="8" r="7" fill={colour ? "#e10600" : "currentColor"} />
-      <rect x="18" y="1" width="14" height="14" fill={colour ? "#0033a0" : "currentColor"} />
-      <path d="M34 15H47L40.500 1z" fill={colour ? "#ffc800" : "currentColor"} />
+      <rect x="0.5" y="0.5" width="23" height="23" />
+      <circle cx="12" cy="12" r="11.500" />
+      <path d="M0.500 23.500L23.500 0.500" />
+      <circle cx="20.100" cy="3.900" r="1.600" fill={colour ? "#e10600" : "currentColor"} stroke="none" />
     </svg>
   );
 }

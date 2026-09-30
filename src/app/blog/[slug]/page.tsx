@@ -31,49 +31,48 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <div className="grid-lines min-h-screen">
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-6 pt-6">
+    <div className="min-h-screen">
+      <header className="mx-auto flex max-w-2xl items-center justify-between px-6 pt-8">
         <Link href="/" aria-label="home">
           <Logo />
         </Link>
-        <Link href="/blog" className="label hover:underline">
+        <Link href="/blog" className="label hover:text-foreground">
           ← blog
         </Link>
       </header>
-      <article className="mx-auto max-w-3xl px-6 py-16 md:py-24">
+      <article className="mx-auto max-w-2xl px-6 py-24 md:py-36">
         <p className="label mb-6">
           <time dateTime={post.date}>{formatDate(post.date)}</time> / {post.readingTime}
         </p>
-        <h1 className="font-display text-[clamp(2.75rem,10vw,6.5rem)] font-bold leading-[0.9] tracking-tighter">
+        <h1 className="text-[clamp(2.25rem,6vw,4rem)] font-extralight leading-[1.05] tracking-[-0.04em]">
           {post.title}
         </h1>
-        <div className="mt-2 h-1 w-24 bg-red" />
 
-        <div className="mt-12 space-y-6 text-lg leading-relaxed md:text-xl">
+        <div className="mt-14 space-y-7 text-[1.0625rem] leading-[1.85] text-foreground/80 md:text-lg">
           {post.body.map((para, i) => (
             <p key={i}>{para}</p>
           ))}
         </div>
 
         {post.timeline && (
-          <ol className="my-14 border-l-2 border-foreground">
+          <ol className="my-16 border-l hairline">
             {post.timeline.map((t, i) => (
               <li key={t.label} className="relative pb-10 pl-8 last:pb-0">
                 <span
-                  className={`absolute -left-[9px] top-1 size-4 border-2 border-foreground ${
-                    i === 0 ? "rounded-full bg-red" : i === 1 ? "bg-blue" : "bg-yellow"
+                  className={`absolute -left-[3.5px] top-1.5 size-1.5 ${
+                    i === 0 ? "bg-red" : i === 1 ? "bg-blue" : "bg-yellow"
                   }`}
                 />
                 <p className="label">
                   {t.date ? <time dateTime={t.date}>{t.label}</time> : t.label}
                 </p>
-                <p className="mt-2 text-lg">{t.text}</p>
+                <p className="mt-2 text-muted">{t.text}</p>
               </li>
             ))}
           </ol>
         )}
 
-        <div className="space-y-6 text-lg leading-relaxed md:text-xl">
+        <div className="space-y-7 text-[1.0625rem] leading-[1.85] text-foreground/80 md:text-lg">
           {post.afterTimeline?.map((para, i) => (
             <p key={i}>{para}</p>
           ))}

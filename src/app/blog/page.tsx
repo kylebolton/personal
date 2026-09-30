@@ -10,31 +10,34 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   return (
-    <div className="grid-lines min-h-screen">
-      <header className="mx-auto flex max-w-4xl items-center justify-between px-6 pt-6">
+    <div className="mx-auto max-w-3xl px-6">
+      <header className="flex items-center justify-between pt-8">
         <Link href="/" aria-label="home">
           <Logo />
         </Link>
-        <Link href="/" className="label hover:underline">
+        <Link href="/" className="label hover:text-foreground">
           kyle bolton
         </Link>
       </header>
-      <main className="mx-auto max-w-4xl px-6 py-16 md:py-24">
-        <h1 className="font-display text-[clamp(3.5rem,14vw,9rem)] font-bold leading-[0.85] tracking-tighter">
+      <main className="py-24 md:py-36">
+        <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-extralight leading-none tracking-[-0.04em]">
           blog
         </h1>
-        <ul className="mt-16 border-t-2 border-foreground">
+        <ul className="mt-20 border-t hairline">
           {posts.map(p => (
-            <li key={p.slug} className="border-b-2 border-foreground">
-              <Link href={`/blog/${p.slug}`} className="group block py-6 md:py-8">
+            <li key={p.slug}>
+              <Link
+                href={`/blog/${p.slug}`}
+                className="group block border-b hairline py-8"
+              >
                 <div className="flex items-baseline justify-between gap-4">
-                  <h2 className="font-display text-3xl font-bold tracking-tighter transition-transform duration-300 group-hover:translate-x-3 md:text-5xl">
+                  <h2 className="text-2xl font-light tracking-tight transition-transform duration-500 group-hover:translate-x-1 md:text-3xl">
                     {p.title}
                   </h2>
-                  <ArrowUpRight className="size-7 shrink-0 group-hover:text-red" />
+                  <ArrowUpRight className="size-4 shrink-0 text-muted transition-colors group-hover:text-foreground" />
                 </div>
-                <p className="mt-3 max-w-xl">{p.summary}</p>
-                <p className="label mt-4">
+                <p className="mt-3 max-w-lg text-muted">{p.summary}</p>
+                <p className="label mt-5">
                   <time dateTime={p.date}>{formatDate(p.date)}</time> / {p.readingTime}
                 </p>
               </Link>

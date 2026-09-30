@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
-import BauhausShapes from "@/components/BauhausShapes";
-import { MaskLine, Reveal, Rule } from "@/components/Reveal";
+import ConstructionFigure from "@/components/ConstructionFigure";
+import { Reveal, Rule } from "@/components/Reveal";
 import {
   ArrowUpRight,
   BlogIcon,
@@ -12,126 +11,112 @@ import {
   Logo,
   MailIcon,
 } from "@/components/icons";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const projects = [
   {
     name: "liquyn.com",
     href: "https://liquyn.com",
-    text: "a fixed rate credit platform on Hyperliquid.",
-    tag: "credit",
-    accent: "bg-red",
+    text: "a fixed rate credit platform on Hyperliquid",
+    marker: "group-hover:bg-red",
   },
   {
     name: "threefoldcamera.com",
     href: "https://threefoldcamera.com",
-    text: "my app.",
-    tag: "app",
-    accent: "bg-blue",
+    text: "my app",
+    marker: "group-hover:bg-blue",
   },
 ];
 
 const links = [
-  { label: "github", href: "https://github.com/kylebolton", icon: GithubIcon, hover: "group-hover:bg-red" },
+  { label: "github", href: "https://github.com/kylebolton", icon: GithubIcon, marker: "group-hover:bg-red" },
   {
     label: "linkedin",
     href: "https://www.linkedin.com/in/kyle-bolton-51453920/",
     icon: LinkedinIcon,
-    hover: "group-hover:bg-blue",
+    marker: "group-hover:bg-blue",
   },
-  { label: "blog", href: "/blog", icon: BlogIcon, hover: "group-hover:bg-yellow" },
-  { label: "contact", href: "mailto:hello@kylebolton.me", icon: MailIcon, hover: "group-hover:bg-red" },
+  { label: "blog", href: "/blog", icon: BlogIcon, marker: "group-hover:bg-yellow" },
+  { label: "contact", href: "mailto:hello@kylebolton.me", icon: MailIcon, marker: "group-hover:bg-red" },
 ];
 
-const inline =
-  "font-semibold underline decoration-2 underline-offset-4 hover:bg-yellow";
+const row = "group flex items-center gap-4 border-b hairline py-6 md:py-7";
+const marker = "size-1.5 shrink-0 bg-transparent transition-colors duration-300";
+const nudge = "transition-transform duration-500 group-hover:translate-x-1";
 
 export default function Home() {
   return (
-    <div className="grid-lines min-h-screen overflow-x-hidden">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-6">
+    <div className="mx-auto max-w-6xl px-6">
+      <header className="flex items-center justify-between pt-8">
         <Logo />
         <span className="label">london, uk</span>
       </header>
 
-      <main className="mx-auto max-w-6xl px-6">
-        <section className="grid items-center gap-10 py-16 md:grid-cols-12 md:py-24">
+      <main>
+        <section className="grid items-end gap-16 py-24 md:grid-cols-12 md:py-40">
           <div className="md:col-span-7">
-            <p className="label mb-6">01 / about</p>
-            <h1 className="font-display text-[clamp(3.5rem,14vw,10rem)] font-bold uppercase leading-[0.85] tracking-tighter">
-              <MaskLine>kyle</MaskLine>
-              <MaskLine delay={0.1}>bolton</MaskLine>
-            </h1>
-            <Reveal delay={0.5} className="mt-10 max-w-xl space-y-4 text-lg md:text-xl">
+            <Reveal>
+              <h1 className="text-[clamp(2.5rem,7vw,5.5rem)] font-extralight leading-none tracking-[-0.04em]">
+                kyle bolton
+              </h1>
+            </Reveal>
+            <Reveal
+              delay={0.15}
+              className="mt-10 max-w-md space-y-4 text-lg leading-relaxed text-muted md:text-xl"
+            >
               <p>
                 Senior engineer working in credit and lending at{" "}
-                <Link href="https://www.handelsbanken.co.uk" className={inline}>
+                <Link
+                  href="https://www.handelsbanken.co.uk"
+                  className="text-foreground underline decoration-hairline underline-offset-4 transition-colors hover:decoration-foreground"
+                >
                   Handelsbanken
                 </Link>
                 .
               </p>
-              <p>
-                Over 10 years in finance, fintech and startups. Based in London.
-              </p>
+              <p>Over 10 years in finance, fintech and startups. Based in London.</p>
             </Reveal>
           </div>
-          <div className="flex justify-center md:col-span-5 md:justify-end">
-            <BauhausShapes />
+          <div className="md:col-span-4 md:col-start-9">
+            <ConstructionFigure className="aspect-square w-full max-w-[14rem] md:max-w-[22rem] text-foreground md:ml-auto" />
           </div>
         </section>
 
-        <section className="py-12">
-          <Rule />
-          <Reveal className="mt-6 mb-10">
-            <p className="label">02 / work</p>
-          </Reveal>
-          <div className="grid gap-8 md:grid-cols-2">
+        <section className="grid gap-8 pb-24 md:grid-cols-12 md:pb-32">
+          <Rule className="md:col-span-12" />
+          <p className="label md:col-span-3">work</p>
+          <ul className="md:col-span-9">
             {projects.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.12}>
-                <Link href={p.href} className="group block" aria-label={p.name}>
-                  <motion.div whileHover={{ x: 4, y: 4 }} whileTap={{ x: 4, y: 4 }}>
-                    <Card className="transition-shadow group-hover:shadow-none">
-                      <CardHeader>
-                        <div className="flex items-center justify-between">
-                          <Badge>{p.tag}</Badge>
-                          <span className={`size-4 ${p.accent} ${i ? "" : "rounded-full"}`} />
-                        </div>
-                        <CardTitle className="mt-6 flex items-center justify-between text-3xl md:text-4xl">
-                          {p.name}
-                          <ArrowUpRight className="size-7 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                        </CardTitle>
-                        <CardDescription className="text-base">{p.text}</CardDescription>
-                      </CardHeader>
-                      <CardContent />
-                    </Card>
-                  </motion.div>
-                </Link>
-              </Reveal>
+              <li key={p.name}>
+                <Reveal delay={i * 0.06}>
+                  <Link href={p.href} className={`${row}`}>
+                    <span className={`${marker} ${p.marker}`} />
+                    <span className={`flex-1 ${nudge}`}>
+                      <span className="block text-2xl font-light tracking-tight md:text-3xl">
+                        {p.name}
+                      </span>
+                      <span className="mt-1 block text-sm text-muted md:text-base">{p.text}</span>
+                    </span>
+                    <ArrowUpRight className="size-4 text-muted transition-colors group-hover:text-foreground" />
+                  </Link>
+                </Reveal>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
-        <section className="py-12 pb-24">
-          <Rule />
-          <Reveal className="mt-6 mb-6">
-            <p className="label">03 / links</p>
-          </Reveal>
-          <ul>
+        <section className="grid gap-8 pb-24 md:grid-cols-12 md:pb-32">
+          <Rule className="md:col-span-12" />
+          <p className="label md:col-span-3">elsewhere</p>
+          <ul className="md:col-span-9">
             {links.map((l, i) => (
-              <li key={l.label} className="border-b-2 border-foreground">
+              <li key={l.label}>
                 <Reveal delay={i * 0.06}>
-                  <Link
-                    href={l.href}
-                    className="group flex items-center gap-4 py-5 md:gap-6 md:py-7"
-                  >
-                    <span
-                      className={`size-4 shrink-0 border-2 border-foreground transition-all duration-200 group-hover:size-8 ${l.hover} md:group-hover:size-10`}
-                    />
-                    <span className="font-display text-4xl font-bold tracking-tighter transition-transform duration-300 group-hover:translate-x-3 md:text-6xl">
+                  <Link href={l.href} className={`${row}`}>
+                    <span className={`${marker} ${l.marker}`} />
+                    <span className={`flex-1 text-2xl font-light tracking-tight md:text-3xl ${nudge}`}>
                       {l.label}
                     </span>
-                    <l.icon className="ml-auto size-7 md:size-9" />
+                    <l.icon className="size-4 text-muted transition-colors group-hover:text-foreground" />
                   </Link>
                 </Reveal>
               </li>
@@ -140,11 +125,9 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mx-auto max-w-6xl px-6">
-        <div className="flex items-center justify-between border-t-2 border-foreground py-6">
-          <span className="label">© {new Date().getFullYear()} kyle bolton</span>
-          <Logo colour={false} />
-        </div>
+      <footer className="flex items-center justify-between border-t hairline py-8">
+        <span className="label">© {new Date().getFullYear()} kyle bolton</span>
+        <Logo colour={false} className="size-4 text-muted" />
       </footer>
     </div>
   );

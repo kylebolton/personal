@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Logo } from "@/components/icons";
+import { ArrowUpRight } from "@/components/icons";
 import { formatDate, posts } from "@/content/posts";
 
 export const metadata: Metadata = {
@@ -12,12 +12,7 @@ export default function BlogIndex() {
   return (
     <div className="mx-auto max-w-3xl px-6">
       <header className="flex items-center justify-between pt-8">
-        <Link href="/" aria-label="home">
-          <Logo />
-        </Link>
-        <Link href="/" className="label hover:text-foreground">
-          kyle bolton
-        </Link>
+        <Link href="/" className="label hover:text-foreground">kyle bolton</Link>
       </header>
       <main className="py-24 md:py-36">
         <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-extralight leading-none tracking-[-0.04em]">

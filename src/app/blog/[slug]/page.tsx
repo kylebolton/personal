@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Logo } from "@/components/icons";
 import { formatDate, getPost, posts } from "@/content/posts";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -33,9 +32,7 @@ export default async function PostPage({ params }: Props) {
   return (
     <div className="min-h-screen">
       <header className="mx-auto flex max-w-2xl items-center justify-between px-6 pt-8">
-        <Link href="/" aria-label="home">
-          <Logo />
-        </Link>
+        <Link href="/" className="label hover:text-foreground">kyle bolton</Link>
         <Link href="/blog" className="label hover:text-foreground">
           ← blog
         </Link>

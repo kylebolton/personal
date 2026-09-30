@@ -62,24 +62,3 @@ export function ArrowUpRight(props: IconProps) {
     </Icon>
   );
 }
-
-/** Reduced construction figure: square, inscribed circle, diagonal, one red point. */
-export function Logo({ colour = true, ...props }: IconProps & { colour?: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-      aria-hidden="true"
-      {...props}
-    >
-      <rect x="0.5" y="0.5" width="23" height="23" />
-      <circle cx="12" cy="12" r="11.500" />
-      <path d="M0.500 23.500L23.500 0.500" />
-      <circle cx="20.100" cy="3.900" r="1.600" fill={colour ? "#e10600" : "currentColor"} stroke="none" />
-    </svg>
-  );
-}

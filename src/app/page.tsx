@@ -1,26 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import ConstructionFigure from "@/components/ConstructionFigure";
 import { Reveal, Rule } from "@/components/Reveal";
 import {
   ArrowUpRight,
   BlogIcon,
   GithubIcon,
   LinkedinIcon,
-  Logo,
   MailIcon,
 } from "@/components/icons";
 
 const projects = [
   {
-    name: "liquyn.com",
+    name: "liquyn",
     href: "https://liquyn.com",
     text: "a fixed rate credit platform on Hyperliquid",
     marker: "group-hover:bg-red",
   },
   {
-    name: "threefoldcamera.com",
+    name: "threefoldcamera",
     href: "https://threefoldcamera.com",
     text: "my app",
     marker: "group-hover:bg-blue",
@@ -39,21 +37,21 @@ const links = [
   { label: "contact", href: "mailto:hello@kylebolton.me", icon: MailIcon, marker: "group-hover:bg-red" },
 ];
 
-const row = "group flex items-center gap-4 border-b hairline py-6 md:py-7";
-const marker = "size-1.5 shrink-0 bg-transparent transition-colors duration-300";
+const row = "group relative flex items-center gap-4 border-b hairline py-6 md:py-7";
+const marker = "absolute -left-4 size-1.5 bg-transparent transition-colors duration-300";
 const nudge = "transition-transform duration-500 group-hover:translate-x-1";
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-6xl px-6">
+    <div className="mx-auto max-w-2xl px-6">
       <header className="flex items-center justify-between pt-8">
-        <Logo />
+        <span className="label">kyle bolton</span>
         <span className="label">london, uk</span>
       </header>
 
       <main>
-        <section className="grid items-end gap-16 py-24 md:grid-cols-12 md:py-40">
-          <div className="md:col-span-7">
+        <section className="py-24 md:py-36">
+          <div>
             <Reveal>
               <h1 className="text-[clamp(2.5rem,7vw,5.5rem)] font-extralight leading-none tracking-[-0.04em]">
                 kyle bolton
@@ -76,15 +74,12 @@ export default function Home() {
               <p>Over 10 years in finance, fintech and startups. Based in London.</p>
             </Reveal>
           </div>
-          <div className="md:col-span-4 md:col-start-9">
-            <ConstructionFigure className="aspect-square w-full max-w-[14rem] md:max-w-[22rem] text-foreground md:ml-auto" />
-          </div>
         </section>
 
-        <section className="grid gap-8 pb-24 md:grid-cols-12 md:pb-32">
-          <Rule className="md:col-span-12" />
-          <p className="label md:col-span-3">work</p>
-          <ul className="md:col-span-9">
+        <section className="pb-24 md:pb-32">
+          <Rule />
+          <p className="label mt-6 mb-4">work</p>
+          <ul>
             {projects.map((p, i) => (
               <li key={p.name}>
                 <Reveal delay={i * 0.06}>
@@ -104,10 +99,10 @@ export default function Home() {
           </ul>
         </section>
 
-        <section className="grid gap-8 pb-24 md:grid-cols-12 md:pb-32">
-          <Rule className="md:col-span-12" />
-          <p className="label md:col-span-3">elsewhere</p>
-          <ul className="md:col-span-9">
+        <section className="pb-24 md:pb-32">
+          <Rule />
+          <p className="label mt-6 mb-4">elsewhere</p>
+          <ul>
             {links.map((l, i) => (
               <li key={l.label}>
                 <Reveal delay={i * 0.06}>
@@ -127,7 +122,6 @@ export default function Home() {
 
       <footer className="flex items-center justify-between border-t hairline py-8">
         <span className="label">© {new Date().getFullYear()} kyle bolton</span>
-        <Logo colour={false} className="size-4 text-muted" />
       </footer>
     </div>
   );

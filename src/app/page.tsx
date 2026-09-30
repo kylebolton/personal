@@ -1,136 +1,151 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useMemo } from "react";
-import FuturisticBackground from "@/components/FuturisticBackground";
-import "./monochrome.css";
+import { motion } from "motion/react";
+import BauhausShapes from "@/components/BauhausShapes";
+import { MaskLine, Reveal, Rule } from "@/components/Reveal";
+import {
+  ArrowUpRight,
+  BlogIcon,
+  GithubIcon,
+  LinkedinIcon,
+  Logo,
+  MailIcon,
+} from "@/components/icons";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
+const projects = [
+  {
+    name: "liquyn.com",
+    href: "https://liquyn.com",
+    text: "a fixed rate credit platform on Hyperliquid.",
+    tag: "credit",
+    accent: "bg-red",
+  },
+  {
+    name: "threefoldcamera.com",
+    href: "https://threefoldcamera.com",
+    text: "my app.",
+    tag: "app",
+    accent: "bg-blue",
+  },
+];
+
+const links = [
+  { label: "github", href: "https://github.com/kylebolton", icon: GithubIcon, hover: "group-hover:bg-red" },
+  {
+    label: "linkedin",
+    href: "https://www.linkedin.com/in/kyle-bolton-51453920/",
+    icon: LinkedinIcon,
+    hover: "group-hover:bg-blue",
+  },
+  { label: "blog", href: "/blog", icon: BlogIcon, hover: "group-hover:bg-yellow" },
+  { label: "contact", href: "mailto:hello@kylebolton.me", icon: MailIcon, hover: "group-hover:bg-red" },
+];
+
+const inline =
+  "font-semibold underline decoration-2 underline-offset-4 hover:bg-yellow";
 
 export default function Home() {
-  const [displayText, setDisplayText] = useState("");
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  // Use useMemo to prevent the phrases array from being recreated on every render
-  const phrases = useMemo(
-    () => ["UI engineer", "fintech enthusiast", "crypto advocate"],
-    []
-  );
-
-  useEffect(() => {
-    const typingSpeed = 100;
-    const deletingSpeed = 50;
-    const pauseTime = 1500;
-
-    const currentPhrase = phrases[currentPhraseIndex];
-
-    if (!isDeleting && displayText === currentPhrase) {
-      setTimeout(() => setIsDeleting(true), pauseTime);
-      return;
-    }
-
-    if (isDeleting && displayText === "") {
-      setIsDeleting(false);
-      setCurrentPhraseIndex(prevIndex => (prevIndex + 1) % phrases.length);
-      return;
-    }
-
-    const timeout = setTimeout(
-      () => {
-        setDisplayText(prev => {
-          if (isDeleting) {
-            return prev.substring(0, prev.length - 1);
-          } else {
-            return currentPhrase.substring(0, prev.length + 1);
-          }
-        });
-      },
-      isDeleting ? deletingSpeed : typingSpeed
-    );
-
-    return () => clearTimeout(timeout);
-  }, [displayText, currentPhraseIndex, isDeleting, phrases]);
-
   return (
-    <>
-      <FuturisticBackground />
+    <div className="grid-lines min-h-screen overflow-x-hidden">
+      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-6">
+        <Logo />
+        <span className="label">london, uk</span>
+      </header>
 
-      <div className="fixed inset-0 overflow-auto bg-transparent text-white font-sans">
-        <div className="container mx-auto px-6 py-8 h-full flex flex-col relative z-10">
-          <main className="flex-grow flex flex-col justify-center py-4">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-              <div className="md:col-span-12">
-                <div className="mb-6 text-left">
-                  <h1 className="monochrome-title text-5xl md:text-6xl lg:text-7xl mb-4">
-                    Kyle Bolton
-                  </h1>
-                </div>
-                <div className="bio-section max-w-2xl mb-12">
-                  <p className="monochrome-text text-xl md:text-2xl">
-                    I&apos;m a{" "}
-                    <span className="typing-text">{displayText}</span>
-                    <span className="typing-cursor">|</span>,
-                    <br />
-                    living and working in{" "}
-                    <Link
-                      href="https://en.wikipedia.org/wiki/London"
-                      className="monochrome-link-subtle"
-                    >
-                      London, UK
-                    </Link>
-                    . Currently a senior engineer for{" "}
-                    <Link
-                      href="https://www.handelsbanken.co.uk"
-                      className="monochrome-link-subtle"
-                    >
-                      Handelsbanken
-                    </Link>
-                    .
-                  </p>
-                </div>
-
-                <div className="mt-16">
-                  <h2 className="monochrome-label mb-8">Links</h2>
-                  <ul className="space-y-4">
-                    <li>
-                      <Link
-                        href="https://github.com/kylebolton"
-                        className="monochrome-link text-4xl md:text-5xl lg:text-6xl block"
-                      >
-                        GITHUB
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="https://www.linkedin.com/in/kyle-bolton-51453920/"
-                        className="monochrome-link text-4xl md:text-5xl lg:text-6xl block"
-                      >
-                        LINKEDIN
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="mailto:hello@kylebolton.me"
-                        className="monochrome-link text-4xl md:text-5xl lg:text-6xl block"
-                      >
-                        EMAIL
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </main>
-
-          <footer className="py-4 border-t border-white/10">
-            <div className="flex justify-between items-center">
-              <p className="monochrome-text text-sm opacity-50">
-                © {new Date().getFullYear()} Kyle Bolton
+      <main className="mx-auto max-w-6xl px-6">
+        <section className="grid items-center gap-10 py-16 md:grid-cols-12 md:py-24">
+          <div className="md:col-span-7">
+            <p className="label mb-6">01 / about</p>
+            <h1 className="font-display text-[clamp(3.5rem,14vw,10rem)] font-bold uppercase leading-[0.85] tracking-tighter">
+              <MaskLine>kyle</MaskLine>
+              <MaskLine delay={0.1}>bolton</MaskLine>
+            </h1>
+            <Reveal delay={0.5} className="mt-10 max-w-xl space-y-4 text-lg md:text-xl">
+              <p>
+                Senior engineer working in credit and lending at{" "}
+                <Link href="https://www.handelsbanken.co.uk" className={inline}>
+                  Handelsbanken
+                </Link>
+                .
               </p>
-              <p className="monochrome-text text-sm opacity-50">London, UK</p>
-            </div>
-          </footer>
+              <p>
+                Over 10 years in finance, fintech and startups. Based in London.
+              </p>
+            </Reveal>
+          </div>
+          <div className="flex justify-center md:col-span-5 md:justify-end">
+            <BauhausShapes />
+          </div>
+        </section>
+
+        <section className="py-12">
+          <Rule />
+          <Reveal className="mt-6 mb-10">
+            <p className="label">02 / work</p>
+          </Reveal>
+          <div className="grid gap-8 md:grid-cols-2">
+            {projects.map((p, i) => (
+              <Reveal key={p.name} delay={i * 0.12}>
+                <Link href={p.href} className="group block" aria-label={p.name}>
+                  <motion.div whileHover={{ x: 4, y: 4 }} whileTap={{ x: 4, y: 4 }}>
+                    <Card className="transition-shadow group-hover:shadow-none">
+                      <CardHeader>
+                        <div className="flex items-center justify-between">
+                          <Badge>{p.tag}</Badge>
+                          <span className={`size-4 ${p.accent} ${i ? "" : "rounded-full"}`} />
+                        </div>
+                        <CardTitle className="mt-6 flex items-center justify-between text-3xl md:text-4xl">
+                          {p.name}
+                          <ArrowUpRight className="size-7 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        </CardTitle>
+                        <CardDescription className="text-base">{p.text}</CardDescription>
+                      </CardHeader>
+                      <CardContent />
+                    </Card>
+                  </motion.div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="py-12 pb-24">
+          <Rule />
+          <Reveal className="mt-6 mb-6">
+            <p className="label">03 / links</p>
+          </Reveal>
+          <ul>
+            {links.map((l, i) => (
+              <li key={l.label} className="border-b-2 border-foreground">
+                <Reveal delay={i * 0.06}>
+                  <Link
+                    href={l.href}
+                    className="group flex items-center gap-4 py-5 md:gap-6 md:py-7"
+                  >
+                    <span
+                      className={`size-4 shrink-0 border-2 border-foreground transition-all duration-200 group-hover:size-8 ${l.hover} md:group-hover:size-10`}
+                    />
+                    <span className="font-display text-4xl font-bold tracking-tighter transition-transform duration-300 group-hover:translate-x-3 md:text-6xl">
+                      {l.label}
+                    </span>
+                    <l.icon className="ml-auto size-7 md:size-9" />
+                  </Link>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
+
+      <footer className="mx-auto max-w-6xl px-6">
+        <div className="flex items-center justify-between border-t-2 border-foreground py-6">
+          <span className="label">© {new Date().getFullYear()} kyle bolton</span>
+          <Logo colour={false} />
         </div>
-      </div>
-    </>
+      </footer>
+    </div>
   );
 }

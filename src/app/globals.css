@@ -2,236 +2,79 @@
 
 @plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-display: var(--font-space-grotesk);
-  --font-serif: var(--font-playfair);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
+  --font-heading: var(--font-space-grotesk);
+  --font-base: var(--font-inter);
+
+  --color-background: var(--background);
+  --color-secondary-background: var(--secondary-background);
+  --color-foreground: var(--foreground);
+  --color-main: var(--main);
+  --color-main-foreground: var(--main-foreground);
   --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-ring: var(--ring);
+  --color-red: var(--red);
+  --color-blue: var(--blue);
+  --color-yellow: var(--yellow);
+
+  --spacing-boxShadowX: 4px;
+  --spacing-boxShadowY: 4px;
+  --spacing-reverseBoxShadowX: -4px;
+  --spacing-reverseBoxShadowY: -4px;
+  --radius-base: 0px;
+  --shadow-shadow: 4px 4px 0px 0px var(--border);
 }
 
 :root {
-  --radius: 0;
-  --background: oklch(0.02 0 0);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.05 0 0);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.05 0 0);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.7 0.25 25);
-  --primary-foreground: oklch(0.02 0 0);
-  --secondary: oklch(0.6 0.18 270);
-  --secondary-foreground: oklch(0.02 0 0);
-  --muted: oklch(0.1 0 0);
-  --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.8 0.2 60);
-  --accent-foreground: oklch(0.02 0 0);
-  --destructive: oklch(0.7 0.3 30);
-  --border: oklch(0.1 0 0);
-  --input: oklch(0.1 0 0);
-  --ring: oklch(0.7 0.25 25);
+  --background: #ffffff;
+  --secondary-background: #f4f4f0;
+  --foreground: #0a0a0a;
+  --main: #0a0a0a;
+  --main-foreground: #ffffff;
+  --border: #0a0a0a;
+  --ring: #0a0a0a;
+  --red: #e10600;
+  --blue: #0033a0;
+  --yellow: #ffc800;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "salt", "ss01", "ss02";
-    letter-spacing: 0.02em;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply font-display tracking-tighter;
-    text-transform: uppercase;
-    letter-spacing: -0.05em;
+  ::selection {
+    background: var(--yellow);
+    color: var(--foreground);
   }
 
-  h1 {
-    @apply text-6xl md:text-8xl lg:text-9xl font-bold;
-    line-height: 0.8;
+  :focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 3px;
   }
+}
 
-  h2 {
-    @apply text-4xl md:text-6xl font-bold;
-    line-height: 0.85;
-  }
+.label {
+  @apply font-display text-xs uppercase tracking-[0.2em];
+}
 
-  h3 {
-    @apply text-2xl md:text-4xl font-bold;
-    line-height: 0.9;
-  }
+.grid-lines {
+  background-image: linear-gradient(to right, rgb(10 10 10 / 0.06) 1px, transparent 1px);
+  background-size: calc(100% / 12) 100%;
+}
 
-  p {
-    @apply font-sans text-base md:text-lg;
-    letter-spacing: 0.01em;
-  }
-
-  a {
-    position: relative;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s ease;
-  }
-
-  a:hover {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  /* Minimalist hover effect */
-  a::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 1px;
-    bottom: -2px;
-    left: 0;
-    background-color: currentColor;
-    transform-origin: bottom right;
-    transition: transform 0.3s ease-out;
-  }
-
-  a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
-
-  /* Brutalist grid system */
-  .brutalist-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1rem;
-  }
-
-  /* Experimental typography */
-  .display-text {
-    @apply font-display uppercase tracking-tight;
-    letter-spacing: -0.05em;
-  }
-
-  .serif-text {
-    @apply font-serif;
-  }
-
-  /* Text reveal animation */
-  .text-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: text-reveal-animation 0.8s forwards;
-    animation-delay: calc(var(--index, 0) * 0.1s);
-  }
-
-  @keyframes text-reveal-animation {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Glitch effect for text */
-  .text-glitch {
-    position: relative;
-    display: inline-block;
-  }
-
-  .text-glitch::before,
-  .text-glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.8;
-  }
-
-  .text-glitch::before {
-    left: 2px;
-    text-shadow: -1px 0 rgba(255, 255, 255, 0.7);
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim 5s infinite linear alternate-reverse;
-  }
-
-  .text-glitch::after {
-    left: -2px;
-    text-shadow: -1px 0 rgba(255, 255, 255, 0.5);
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim2 5s infinite linear alternate-reverse;
-  }
-
-  @keyframes glitch-anim {
-    0% {
-      clip: rect(31px, 9999px, 94px, 0);
-    }
-    5% {
-      clip: rect(70px, 9999px, 71px, 0);
-    }
-    10% {
-      clip: rect(29px, 9999px, 83px, 0);
-    }
-    15% {
-      clip: rect(16px, 9999px, 91px, 0);
-    }
-    20% {
-      clip: rect(2px, 9999px, 23px, 0);
-    }
-    25% {
-      clip: rect(46px, 9999px, 33px, 0);
-    }
-    100% {
-      clip: rect(31px, 9999px, 94px, 0);
-    }
-  }
-
-  @keyframes glitch-anim2 {
-    0% {
-      clip: rect(96px, 9999px, 78px, 0);
-    }
-    5% {
-      clip: rect(82px, 9999px, 15px, 0);
-    }
-    10% {
-      clip: rect(21px, 9999px, 67px, 0);
-    }
-    15% {
-      clip: rect(35px, 9999px, 53px, 0);
-    }
-    20% {
-      clip: rect(89px, 9999px, 21px, 0);
-    }
-    25% {
-      clip: rect(75px, 9999px, 85px, 0);
-    }
-    100% {
-      clip: rect(96px, 9999px, 78px, 0);
-    }
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

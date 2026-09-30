@@ -1,14 +1,19 @@
 # kylebolton.me
 
-Personal website featuring experimental typography and CSS animations inspired by David Rudnick's design aesthetic. Built with Next.js 15, React, and Tailwind CSS.
+Personal website of Kyle Bolton: white, edgy and Bauhaus-inspired, with sparse primary colour.
 
 ## Tech Stack
 
-- **Framework**: Next.js 15 with App Router
-- **UI Library**: React 18+
-- **Component Library**: Shadcn/ui
-- **Styling**: Tailwind CSS
-- **Typography**: Custom typography inspired by David Rudnick
-- **Animation**: CSS animations for UI elements
-- **State Management**: React Context API and/or Zustand
+- **Framework**: Next.js 15 (App Router), React 19
+- **Styling**: Tailwind CSS 4
+- **Components**: neobrutalism.dev (shadcn-based) in `src/components/ui`
+- **Animation**: motion.dev (`motion/react`)
+- **Blog**: typed posts in `src/content/posts.ts`, routes under `src/app/blog`
 - **Deployment**: Vercel
+
+## Development
+
+```bash
+npm install
+npm run dev
+```

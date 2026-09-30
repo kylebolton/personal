@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Playfair_Display } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,23 +12,24 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
+const description =
+  "Kyle Bolton, senior engineer in credit and lending at Handelsbanken. Over 10 years in finance, fintech and startups. Building liquyn.com. Based in London, UK.";
 
 export const metadata: Metadata = {
-  title: "Kyle Bolton | UI Engineer",
-  description:
-    "Kyle Bolton, UI engineer, fintech enthusiast, and crypto advocate based in London, UK.",
+  title: {
+    default: "Kyle Bolton | Senior Engineer, Credit & Lending",
+    template: "%s | Kyle Bolton",
+  },
+  description,
   keywords: [
     "Kyle Bolton",
-    "UI Engineer",
+    "Senior Engineer",
+    "Credit",
+    "Lending",
+    "Handelsbanken",
     "Fintech",
-    "Crypto",
+    "Liquyn",
     "London",
-    "Developer",
-    "Frontend",
   ],
   authors: [{ name: "Kyle Bolton" }],
   creator: "Kyle Bolton",
@@ -39,31 +40,28 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://kylebolton.me",
-    title: "Kyle Bolton | UI Engineer",
-    description:
-      "Kyle Bolton, UI engineer, fintech enthusiast, and crypto advocate based in London, UK.",
+    title: "Kyle Bolton | Senior Engineer, Credit & Lending",
+    description,
     siteName: "Kyle Bolton",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Kyle Bolton - UI Engineer",
+        alt: "Kyle Bolton",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kyle Bolton | UI Engineer",
-    description:
-      "Personal website of Kyle Bolton, UI engineer, fintech enthusiast, and crypto advocate based in London, UK.",
+    title: "Kyle Bolton | Senior Engineer, Credit & Lending",
+    description,
     images: ["/og-image.png"],
   },
   icons: {
     icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
       { url: "/favicon.ico" },
-      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
     apple: [
       {
@@ -72,17 +70,14 @@ export const metadata: Metadata = {
         type: "image/png",
       },
     ],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/icons/safari-pinned-tab.svg",
-        color: "#000000",
-      },
-    ],
   },
   manifest: "/site.webmanifest",
-  themeColor: "#000000",
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -91,10 +86,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${playfair.variable} antialiased bg-black text-white`}
-      >
+    <html lang="en">
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         {children}
       </body>
     </html>

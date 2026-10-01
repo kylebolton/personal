@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight } from "@/components/icons";
-import { formatDate, posts } from "@/content/posts";
 
 export const metadata: Metadata = {
   title: "blog",
-  description: "Writing by Kyle Bolton on credit, fintech and crypto.",
+  description: "Writing by Kyle Bolton on credit, fintech and crypto. Coming soon.",
 };
 
 export default function BlogIndex() {
@@ -15,30 +13,24 @@ export default function BlogIndex() {
         <Link href="/" className="label hover:text-foreground">kyle bolton</Link>
       </header>
       <main className="py-24 md:py-36">
-        <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-extralight leading-none tracking-[-0.04em]">
-          blog
+        <h1 className="text-[clamp(2rem,4.5vw,3.25rem)] font-light leading-none tracking-[-0.03em]">
+          blog<span className="text-sun">.</span>
         </h1>
-        <ul className="mt-20 border-t hairline">
-          {posts.map(p => (
-            <li key={p.slug}>
-              <Link
-                href={`/blog/${p.slug}`}
-                className="group block border-b hairline py-8"
-              >
-                <div className="flex items-baseline justify-between gap-4">
-                  <h2 className="text-2xl font-light tracking-tight transition-transform duration-500 group-hover:translate-x-1 md:text-3xl">
-                    {p.title}
-                  </h2>
-                  <ArrowUpRight className="size-4 shrink-0 text-muted transition-colors group-hover:text-foreground" />
-                </div>
-                <p className="mt-3 max-w-lg text-muted">{p.summary}</p>
-                <p className="label mt-5">
-                  <time dateTime={p.date}>{formatDate(p.date)}</time> / {p.readingTime}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-16 flex items-center gap-6 border-t hairline pt-10">
+          <svg viewBox="0 0 80 80" aria-hidden="true" className="size-16 shrink-0 motion-safe:animate-[spin_40s_linear_infinite]">
+            <circle cx="40" cy="40" r="36" fill="none" stroke="#2d5bff" strokeWidth="2" />
+            <circle cx="40" cy="40" r="27" fill="none" stroke="#2d5bff" strokeWidth="0.75" />
+            <path d="M4 40H76M40 4V76M14.5 14.5L65.5 65.5M65.5 14.5L14.5 65.5" stroke="#2d5bff" strokeWidth="0.75" />
+            <circle cx="76" cy="40" r="3.5" fill="#f2c94c" />
+            <circle cx="4" cy="40" r="3.5" fill="#f8e7a6" />
+            <circle cx="40" cy="4" r="3.5" fill="#f8e7a6" />
+            <circle cx="40" cy="76" r="3.5" fill="#f8e7a6" />
+          </svg>
+          <div>
+            <p className="text-2xl font-light tracking-tight md:text-3xl">Coming soon.</p>
+            <p className="mt-2 text-muted">Writing on credit, fintech and crypto.</p>
+          </div>
+        </div>
       </main>
     </div>
   );

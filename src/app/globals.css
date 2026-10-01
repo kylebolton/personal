@@ -1,36 +1,40 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-serif);
   --font-mono: var(--font-plex-mono);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-hairline: var(--hairline);
-  --color-red: var(--red);
+  --color-sun: var(--sun);
   --color-blue: var(--blue);
-  --color-yellow: var(--yellow);
+  --color-butter: var(--butter);
+  --color-sky: var(--sky);
+  --color-haze: var(--haze);
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #111111;
-  --muted: #6b6b6b;
-  --hairline: rgb(17 17 17 / 0.14);
-  --red: #e10600;
-  --blue: #0033a0;
-  --yellow: #ffc800;
+  --foreground: #0a1030;
+  --muted: #5d6a85;
+  --hairline: rgb(10 16 48 / 0.16);
+  --sun: #1aa0ff;
+  --blue: #2d5bff;
+  --butter: #d6ecff;
+  --sky: #b5dcff;
+  --haze: #e3edfb;
 }
 
 @layer base {
   body {
     @apply bg-background text-foreground font-sans font-light antialiased;
-    letter-spacing: -0.005em;
+    letter-spacing: 0;
   }
 
   ::selection {
-    background: var(--yellow);
+    background: var(--butter);
     color: var(--foreground);
   }
 
@@ -55,5 +59,25 @@ html {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+@keyframes bird-glide {
+  from {
+    transform: translateX(-30px);
+  }
+  to {
+    transform: translateX(510px);
+  }
+}
+
+.bird-glide {
+  animation: bird-glide 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bird-glide {
+    animation: none;
+    transform: translateX(var(--bird-x0));
   }
 }

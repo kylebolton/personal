@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -144,6 +145,9 @@ function Bird({
  */
 export function LondonSkyline({ className }: { className?: string }) {
   const reduce = useReducedMotion();
+  // Observe the <svg> itself: WebKit never fires whileInView for SVG child elements.
+  const ref = useRef<SVGSVGElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-20px" });
 
   const rise = (i: number) =>
     reduce
@@ -151,13 +155,13 @@ export function LondonSkyline({ className }: { className?: string }) {
         { initial: false as const, animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
       : {
           initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true, margin: "-20px" },
+          animate: inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
           transition: { duration: 0.9, delay: 0.1 + i * 0.1, ease },
         };
 
   return (
     <svg
+      ref={ref}
       viewBox="0 -8 480 194"
       role="img"
       aria-label="A stylised illustration of the London skyline at dusk"
@@ -188,8 +192,7 @@ export function LondonSkyline({ className }: { className?: string }) {
         r="64"
         fill="url(#sun-glow)"
         initial={reduce ? false : { opacity: 0, scale: 0.85 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
+        animate={inView ? { opacity: 1, scale: 1 } : undefined}
         transition={{ duration: 1.4, ease }}
         style={{ transformBox: "fill-box", transformOrigin: "center" }}
       />
@@ -379,8 +382,7 @@ export function LondonSkyline({ className }: { className?: string }) {
         strokeWidth="1.2"
         fill="none"
         initial={reduce ? false : { pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        viewport={{ once: true }}
+        animate={inView ? { pathLength: 1 } : undefined}
         transition={{ duration: 1.8, ease }}
       />
 

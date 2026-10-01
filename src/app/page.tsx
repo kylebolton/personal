@@ -40,7 +40,7 @@ const links = [
 
 const row = "group relative flex items-center gap-4 border-b hairline py-8 md:py-9";
 const marker =
-  "absolute -left-3.5 size-1.5 rounded-full opacity-40 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus-visible:opacity-100";
+  "absolute -left-5 size-1.5 rounded-full opacity-40 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus-visible:opacity-100";
 const nudge =
   "transition-transform duration-500 group-hover:translate-x-1 group-active:translate-x-1 group-focus-visible:translate-x-1";
 

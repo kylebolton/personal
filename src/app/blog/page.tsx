@@ -13,7 +13,7 @@ export default function BlogIndex() {
         <Link href="/" className="label hover:text-foreground">kyle bolton</Link>
       </header>
       <main className="py-24 md:py-36">
-        <h1 className="text-[clamp(2rem,4.5vw,3.25rem)] font-light leading-none tracking-[-0.03em]">
+        <h1 className="text-[clamp(1.75rem,3.6vw,2.5rem)] font-light leading-none tracking-[-0.03em]">
           blog<span className="text-sun">.</span>
         </h1>
         <div className="mt-16 flex items-center gap-6 border-t hairline pt-10">
@@ -27,7 +27,7 @@ export default function BlogIndex() {
             <circle cx="40" cy="76" r="3.5" fill="#f8e7a6" />
           </svg>
           <div>
-            <p className="text-2xl font-light tracking-tight md:text-3xl">Coming soon.</p>
+            <p className="text-xl font-light tracking-tight md:text-2xl">Coming soon.</p>
             <p className="mt-2 text-muted">Writing on credit, fintech and crypto.</p>
           </div>
         </div>

@@ -38,7 +38,7 @@ const links = [
   { label: "contact", href: "mailto:hello@kylebolton.me", icon: MailIcon, marker: "bg-sun" },
 ];
 
-const row = "group relative flex items-center gap-4 border-b hairline py-6 md:py-7";
+const row = "group relative flex items-center gap-4 border-b hairline py-8 md:py-9";
 const marker =
   "absolute -left-3.5 size-1.5 rounded-full opacity-40 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus-visible:opacity-100";
 const nudge =
@@ -86,7 +86,7 @@ export default function Home() {
 
         <section className="pb-24 md:pb-32">
           <Rule />
-          <p className="label mt-6 mb-4">work</p>
+          <p className="label mt-8 mb-6">work</p>
           <ul>
             {projects.map((p, i) => (
               <li key={p.name}>
@@ -97,7 +97,7 @@ export default function Home() {
                       <span className="block text-2xl font-light tracking-tight md:text-3xl">
                         {p.name}
                       </span>
-                      <span className="mt-1 block text-sm text-muted md:text-base">{p.text}</span>
+                      <span className="mt-2 block text-sm text-muted md:text-base">{p.text}</span>
                     </span>
                     <ArrowUpRight className="size-4 text-muted transition-colors group-hover:text-foreground group-active:text-foreground group-focus-visible:text-foreground" />
                   </Link>
@@ -109,12 +109,12 @@ export default function Home() {
 
         <section className="pb-24 md:pb-32">
           <Rule />
-          <p className="label mt-6 mb-4">elsewhere</p>
+          <p className="label mt-8 mb-6">elsewhere</p>
           <ul>
             {links.map((l, i) => (
               <li key={l.label}>
                 <Reveal delay={i * 0.06}>
-                  <Link href={l.href} className={`${row} !py-8 md:!py-9`}>
+                  <Link href={l.href} className={`${row}`}>
                     <span className={`${marker} ${l.marker}`} />
                     <span className={`flex-1 text-2xl font-light tracking-tight md:text-3xl ${nudge}`}>
                       {l.label}

@@ -63,10 +63,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/icons/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icons/favicon-16x16.png", type: "image/png", sizes: "16x16" },
       { url: "/favicon.ico", sizes: "48x48" },
     ],
-    other: [{ rel: "mask-icon", url: "/icons/safari-pinned-tab.svg", color: "#2d5bff" }],
+    other: [{ rel: "mask-icon", url: "/icons/safari-pinned-tab.svg", color: "#000000" }],
     apple: [
       {
         url: "/icons/apple-touch-icon.png",

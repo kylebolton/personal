@@ -114,7 +114,7 @@ export default function Home() {
             {links.map((l, i) => (
               <li key={l.label}>
                 <Reveal delay={i * 0.06}>
-                  <Link href={l.href} className={`${row}`}>
+                  <Link href={l.href} className={`${row} !py-8 md:!py-9`}>
                     <span className={`${marker} ${l.marker}`} />
                     <span className={`flex-1 text-2xl font-light tracking-tight md:text-3xl ${nudge}`}>
                       {l.label}

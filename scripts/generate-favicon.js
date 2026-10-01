@@ -1,6 +1,6 @@
 /**
  * Generates every favicon/app-icon asset from one design: a cobalt tile with a
- * white serif "k" and a light-blue full stop (the same full stop as the site's
+ * white serif "k" (an outlined Georgia Bold glyph, so no font is needed) and a light-blue full stop (the same full stop as the site's
  * name). Run with `node scripts/generate-favicon.js`.
  */
 const fs = require("fs");
@@ -12,10 +12,28 @@ const iconsDir = path.join(publicDir, "icons");
 
 const COBALT = "#2d5bff";
 const DOT = "#9fd6ff";
-const FONT = 'Georgia, "Times New Roman", serif';
+
+// Georgia Bold "k" outlined on the 64-unit grid, so every output is font-independent.
+const K_PATH =
+  "M43.94 47.22L43.94 49L32.44 49Q30.32 45.26 28.56 42.66Q26.80 40.06 25.24 37.84L23.78 39.09L23.78 44.41Q23.78 45.29 24.03 45.85Q24.29 46.41 25.02 46.68Q25.46 46.88 26.05 47.02Q26.63 47.17 27.22 47.22L27.22 49L12.11 49L12.11 47.22Q12.72 47.17 13.33 47.08Q13.94 47 14.40 46.85Q15.18 46.58 15.46 46.02Q15.75 45.46 15.75 44.56L15.75 17.33Q15.75 16.53 15.39 15.66Q15.04 14.80 14.35 14.36Q13.89 14.06 12.96 13.87Q12.03 13.67 11.28 13.62L11.28 11.84L23.41 11.21L23.78 11.60L23.78 36.79Q25.58 35.18 27.84 33.06Q30.10 30.93 31.47 29.54Q32.27 28.71 32.36 28.28Q32.44 27.86 32.44 27.76Q32.44 27.32 31.68 27.03Q30.91 26.73 29.37 26.51L29.37 24.78L41.77 24.78L41.77 26.47Q39.33 27.15 38.05 27.75Q36.77 28.35 35.25 29.35Q34.25 30.01 33.31 30.73Q32.37 31.45 31.15 32.52Q33.54 35.99 35.57 38.94Q37.60 41.90 39.82 45.19Q40.57 46.34 41.70 46.73Q42.82 47.12 43.94 47.22Z";
 
 // Geometry on a 64-unit grid, shared by the SVG and the canvas renderer.
-const G = { k: { x: 27, y: 49, size: 50 }, dot: { x: 50, y: 45.5, r: 3.6 }, radius: 14 };
+const G = { dot: { x: 50, y: 45.5, r: 3.6 }, radius: 14 };
+
+/** Minimal SVG path tracer for absolute M, L, Q and Z commands (node-canvas has no Path2D). */
+function tracePath(ctx, d) {
+  const tokens = d.match(/[MLQZ]|-?\d*\.?\d+/g);
+  let i = 0;
+  const num = () => parseFloat(tokens[i++]);
+  let cmd;
+  while (i < tokens.length) {
+    if (/[MLQZ]/.test(tokens[i])) cmd = tokens[i++];
+    if (cmd === "M") ctx.moveTo(num(), num());
+    else if (cmd === "L") ctx.lineTo(num(), num());
+    else if (cmd === "Q") ctx.quadraticCurveTo(num(), num(), num(), num());
+    else if (cmd === "Z") ctx.closePath();
+  }
+}
 
 function renderPng(size, { rounded }) {
   const canvas = createCanvas(size, size);
@@ -38,10 +56,12 @@ function renderPng(size, { rounded }) {
   }
 
   ctx.fillStyle = "#ffffff";
-  ctx.font = `bold ${G.k.size * u}px ${FONT}`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "alphabetic";
-  ctx.fillText("k", G.k.x * u, G.k.y * u);
+  ctx.save();
+  ctx.scale(u, u);
+  ctx.beginPath();
+  tracePath(ctx, K_PATH);
+  ctx.fill();
+  ctx.restore();
 
   ctx.fillStyle = DOT;
   ctx.beginPath();
@@ -72,7 +92,7 @@ function toIco(entries) {
   return Buffer.concat([header, ...dir, ...entries.map(e => e.buf)]);
 }
 
-const svg = fill => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="${G.radius}" fill="${fill}"/><text x="${G.k.x}" y="${G.k.y}" text-anchor="middle" font-family='${FONT}' font-size="${G.k.size}" font-weight="700" fill="#fff">k</text><circle cx="${G.dot.x}" cy="${G.dot.y}" r="${G.dot.r}" fill="${DOT}"/></svg>`;
+const svg = fill => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="${G.radius}" fill="${fill}"/><path d="${K_PATH}" fill="#fff"/><circle cx="${G.dot.x}" cy="${G.dot.y}" r="${G.dot.r}" fill="${DOT}"/></svg>`;
 
 fs.mkdirSync(iconsDir, { recursive: true });
 
@@ -81,7 +101,7 @@ fs.writeFileSync(path.join(publicDir, "icon.svg"), svg(COBALT));
 // Monochrome mask for Safari pinned tabs.
 fs.writeFileSync(
   path.join(iconsDir, "safari-pinned-tab.svg"),
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><text x="${G.k.x}" y="${G.k.y}" text-anchor="middle" font-family='${FONT}' font-size="${G.k.size}" font-weight="700" fill="#000">k</text><circle cx="${G.dot.x}" cy="${G.dot.y}" r="${G.dot.r}" fill="#000"/></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="${K_PATH}" fill="#000"/><circle cx="${G.dot.x}" cy="${G.dot.y}" r="${G.dot.r}" fill="#000"/></svg>`,
 );
 
 const rounded = [16, 32, 48, 64, 128, 256];

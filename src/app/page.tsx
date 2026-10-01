@@ -56,14 +56,14 @@ export default function Home() {
         <section className="pt-24 pb-12 md:pt-36 md:pb-16">
           <div>
             <Reveal>
-              <h1 className="text-[clamp(1.75rem,3.6vw,2.5rem)] font-light leading-none tracking-[-0.03em]">
+              <h1 className="text-[clamp(2rem,4.5vw,3.25rem)] font-light leading-none tracking-[-0.03em]">
                 kyle <span className="underline decoration-1 decoration-hairline underline-offset-[0.2em] md:underline-offset-4">bolton</span>
                 <span className="text-sun">.</span>
               </h1>
             </Reveal>
             <Reveal
               delay={0.15}
-              className="mt-10 max-w-xl space-y-4 text-lg leading-relaxed text-muted md:text-xl"
+              className="mt-10 max-w-xl space-y-4 text-xl leading-relaxed text-muted md:text-2xl"
             >
               <p>
                 Senior engineer working in credit and lending at{" "}
@@ -94,10 +94,10 @@ export default function Home() {
                   <Link href={p.href} className={`${row}`}>
                     <span className={`${marker} ${p.marker}`} />
                     <span className={`flex-1 ${nudge}`}>
-                      <span className="block text-xl font-light tracking-tight md:text-2xl">
+                      <span className="block text-2xl font-light tracking-tight md:text-3xl">
                         {p.name}
                       </span>
-                      <span className="mt-1 block text-sm text-muted">{p.text}</span>
+                      <span className="mt-1 block text-sm text-muted md:text-base">{p.text}</span>
                     </span>
                     <ArrowUpRight className="size-4 text-muted transition-colors group-hover:text-foreground group-active:text-foreground group-focus-visible:text-foreground" />
                   </Link>
@@ -116,7 +116,7 @@ export default function Home() {
                 <Reveal delay={i * 0.06}>
                   <Link href={l.href} className={`${row}`}>
                     <span className={`${marker} ${l.marker}`} />
-                    <span className={`flex-1 text-xl font-light tracking-tight md:text-2xl ${nudge}`}>
+                    <span className={`flex-1 text-2xl font-light tracking-tight md:text-3xl ${nudge}`}>
                       {l.label}
                       {l.note && (
                         <span className="label ml-3 align-middle">{l.note}</span>

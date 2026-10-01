@@ -20,7 +20,7 @@ const description =
 
 export const metadata: Metadata = {
   title: {
-    default: "Kyle Bolton | Senior Engineer, Credit & Lending",
+    default: "Kyle Bolton",
     template: "%s | Kyle Bolton",
   },
   description,
@@ -63,9 +63,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" },
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/favicon.ico", sizes: "48x48" },
     ],
+    other: [{ rel: "mask-icon", url: "/icons/safari-pinned-tab.svg", color: "#2d5bff" }],
     apple: [
       {
         url: "/icons/apple-touch-icon.png",

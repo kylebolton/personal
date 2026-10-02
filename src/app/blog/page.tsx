@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   return (
-    <div className="mx-auto max-w-3xl px-6">
+    <div className="mx-auto max-w-2xl px-6">
       <header className="flex items-center justify-between pt-8">
         <Link href="/" className="label hover:text-foreground">kyle bolton</Link>
       </header>
@@ -21,10 +21,10 @@ export default function BlogIndex() {
             <circle cx="40" cy="40" r="36" fill="none" stroke="#2d5bff" strokeWidth="2" />
             <circle cx="40" cy="40" r="27" fill="none" stroke="#2d5bff" strokeWidth="0.75" />
             <path d="M4 40H76M40 4V76M14.5 14.5L65.5 65.5M65.5 14.5L14.5 65.5" stroke="#2d5bff" strokeWidth="0.75" />
-            <circle cx="76" cy="40" r="3.5" fill="#f2c94c" />
-            <circle cx="4" cy="40" r="3.5" fill="#f8e7a6" />
-            <circle cx="40" cy="4" r="3.5" fill="#f8e7a6" />
-            <circle cx="40" cy="76" r="3.5" fill="#f8e7a6" />
+            <circle cx="76" cy="40" r="3.5" fill="#58a6ff" />
+            <circle cx="4" cy="40" r="3.5" fill="#d6ecff" />
+            <circle cx="40" cy="4" r="3.5" fill="#d6ecff" />
+            <circle cx="40" cy="76" r="3.5" fill="#d6ecff" />
           </svg>
           <div>
             <p className="text-2xl font-light tracking-tight md:text-3xl">Coming soon.</p>

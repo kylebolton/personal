@@ -15,15 +15,16 @@ export function Reveal({
   className?: string;
 }) {
   const reduce = useReducedMotion();
-  if (reduce) return <div className={className}>{children}</div>;
+  // Keep the server's hidden initial state so hydration matches; under reduced motion snap straight to visible.
+  const motionProps = reduce
+    ? { animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
+    : {
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-40px" },
+        transition: { duration: 0.7, delay, ease },
+      };
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 8 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.7, delay, ease }}
-    >
+    <motion.div className={className} initial={{ opacity: 0, y: 8 }} {...motionProps}>
       {children}
     </motion.div>
   );
@@ -36,10 +37,14 @@ export function Rule({ className }: { className?: string }) {
     <motion.div
       aria-hidden="true"
       className={`h-px origin-left bg-hairline ${className ?? ""}`}
-      initial={reduce ? false : { scaleX: 0 }}
-      whileInView={{ scaleX: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.1, ease }}
+      initial={{ scaleX: 0 }}
+      {...(reduce
+        ? { animate: { scaleX: 1 }, transition: { duration: 0 } }
+        : {
+            whileInView: { scaleX: 1 },
+            viewport: { once: true },
+            transition: { duration: 1.1, ease },
+          })}
     />
   );
 }

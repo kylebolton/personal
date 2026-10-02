@@ -16,39 +16,32 @@ const projects = [
     name: "liquyn",
     href: "https://liquyn.com",
     text: "a fixed rate credit platform on Hyperliquid",
-    marker: "bg-sun",
   },
   {
     name: "threefold",
     href: "https://threefoldcamera.com",
     text: "an iPhone camera application",
-    marker: "bg-blue",
   },
 ];
 
 const links = [
-  { label: "github", href: "https://github.com/kylebolton", icon: GithubIcon, marker: "bg-sun" },
-  {
-    label: "linkedin",
-    href: "https://www.linkedin.com/in/kyle-bolton-51453920/",
-    icon: LinkedinIcon,
-    marker: "bg-blue",
-  },
-  { label: "blog", href: "/blog", icon: BlogIcon, marker: "bg-sun", note: "coming soon" },
-  { label: "contact", href: "mailto:hello@kylebolton.me", icon: MailIcon, marker: "bg-sun" },
+  { label: "github", href: "https://github.com/kylebolton", icon: GithubIcon },
+  { label: "linkedin", href: "https://www.linkedin.com/in/kyle-bolton-51453920/", icon: LinkedinIcon },
+  { label: "blog", href: "/blog", icon: BlogIcon, note: "coming soon" },
+  { label: "contact", href: "mailto:hello@kylebolton.me", icon: MailIcon },
 ];
 
-const row = "group relative flex items-center gap-4 border-b hairline py-8 pl-5 md:py-9";
+const row = "group relative flex items-center gap-4 py-5 md:py-6";
 const marker =
-  "absolute left-0 size-1.5 rounded-full opacity-40 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus-visible:opacity-100";
+  "absolute left-0 size-1.5 rounded-full bg-blue opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus-visible:opacity-100";
 const nudge =
-  "transition-transform duration-500 group-hover:translate-x-1 group-active:translate-x-1 group-focus-visible:translate-x-1";
+  "transition-transform duration-500 group-hover:translate-x-4 group-active:translate-x-4 group-focus-visible:translate-x-4";
+const item = "border-b hairline last:border-b-0";
 
 export default function Home() {
   return (
     <div className="mx-auto max-w-2xl px-6">
-      <header className="flex items-center justify-between pt-8">
-        <span className="label">kyle bolton</span>
+      <header className="flex items-center justify-end pt-8">
         <span className="label">london, uk</span>
       </header>
 
@@ -81,18 +74,18 @@ export default function Home() {
               </p>
             </Reveal>
           </div>
-          <LondonSkyline className="mt-16 h-auto w-full md:mt-24" />
+          <LondonSkyline className="mt-12 h-auto w-full md:mt-16" />
         </section>
 
-        <section className="pb-24 md:pb-32">
+        <section className="pb-14 md:pb-16">
           <Rule />
-          <p className="label mt-8 mb-6">work</p>
+          <p className="label mt-8 mb-2">work</p>
           <ul>
             {projects.map((p, i) => (
-              <li key={p.name}>
+              <li key={p.name} className={item}>
                 <Reveal delay={i * 0.06}>
-                  <Link href={p.href} className={`${row}`}>
-                    <span className={`${marker} ${p.marker}`} />
+                  <Link href={p.href} className={row}>
+                    <span className={marker} />
                     <span className={`flex-1 ${nudge}`}>
                       <span className="block text-2xl font-light tracking-tight md:text-3xl">
                         {p.name}
@@ -107,23 +100,30 @@ export default function Home() {
           </ul>
         </section>
 
-        <section className="pb-24 md:pb-32">
+        <section className="pb-14 md:pb-16">
           <Rule />
-          <p className="label mt-8 mb-6">elsewhere</p>
+          <p className="label mt-8 mb-2">elsewhere</p>
           <ul>
             {links.map((l, i) => (
-              <li key={l.label}>
+              <li key={l.label} className={item}>
                 <Reveal delay={i * 0.06}>
-                  <Link href={l.href} className={`${row}`}>
-                    <span className={`${marker} ${l.marker}`} />
-                    <span className={`flex-1 text-2xl font-light tracking-tight md:text-3xl ${nudge}`}>
-                      {l.label}
-                      {l.note && (
+                  {l.note ? (
+                    <div className={row}>
+                      <span className="flex-1 text-2xl font-light tracking-tight text-muted md:text-3xl">
+                        {l.label}
                         <span className="label ml-3 align-middle">{l.note}</span>
-                      )}
-                    </span>
-                    <l.icon className="size-4 text-muted transition-colors group-hover:text-foreground group-active:text-foreground group-focus-visible:text-foreground" />
-                  </Link>
+                      </span>
+                      <l.icon className="size-4 text-muted" />
+                    </div>
+                  ) : (
+                    <Link href={l.href} className={row}>
+                      <span className={marker} />
+                      <span className={`flex-1 text-2xl font-light tracking-tight md:text-3xl ${nudge}`}>
+                        {l.label}
+                      </span>
+                      <l.icon className="size-4 text-muted transition-colors group-hover:text-foreground group-active:text-foreground group-focus-visible:text-foreground" />
+                    </Link>
+                  )}
                 </Reveal>
               </li>
             ))}

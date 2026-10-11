@@ -22,6 +22,16 @@ const projects = [
     href: "https://threefoldcamera.com",
     text: "an iPhone camera application",
   },
+  {
+    name: "ktorrent",
+    href: "https://github.com/kylebolton/kTorrent",
+    text: "a native macOS torrent client",
+  },
+  {
+    name: "hypertrader",
+    href: "https://github.com/kylebolton/HyperTrader",
+    text: "a chart trading terminal for Hyperliquid",
+  },
 ];
 
 const links = [

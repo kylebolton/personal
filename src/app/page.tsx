@@ -29,7 +29,7 @@ const projects = [
   },
   {
     name: "hypertrader",
-    href: "https://github.com/kylebolton/HyperTrader",
+    href: "https://liquyn.com/hypertrader",
     text: "a chart trading terminal for Hyperliquid",
   },
 ];

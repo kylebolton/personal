@@ -23,8 +23,8 @@ const projects = [
     text: "an iPhone camera application",
   },
   {
-    name: "ktorrent",
-    href: "https://github.com/kylebolton/kTorrent",
+    name: "swarmly",
+    href: "https://github.com/kylebolton/Swarmly",
     text: "a native macOS torrent client",
   },
   {

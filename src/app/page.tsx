@@ -32,6 +32,11 @@ const projects = [
     href: "https://liquyn.com/hypertrader",
     text: "a chart trading terminal for Hyperliquid",
   },
+  {
+    name: "exiter",
+    href: "https://github.com/kylebolton/Exiter",
+    text: "a quiet, fast desktop client for X",
+  },
 ];
 
 const links = [

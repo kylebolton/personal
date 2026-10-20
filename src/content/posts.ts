@@ -36,7 +36,8 @@ export const posts: Post[] = [
     readingTime: "8 min read",
     summary:
       "Rates that swing by the day are how on-chain lending normally works. That is the reason ordinary borrowers stay away.",
-    image: "/blog/fixed-credit-og.png",
+    // The ?v= suffix changes the URL so X and other scrapers refetch the card. Bump it when the image changes.
+    image: "/blog/fixed-credit-og.png?v=2",
     imageAlt:
       "A floating borrow rate that spikes above 10% and almost 40% beside a flat fixed rate of 5.5% held to maturity.",
     blocks: fixedCreditBlocks,

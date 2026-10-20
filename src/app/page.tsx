@@ -42,7 +42,7 @@ const projects = [
 const links = [
   { label: "github", href: "https://github.com/kylebolton", icon: GithubIcon },
   { label: "linkedin", href: "https://www.linkedin.com/in/kyle-bolton-51453920/", icon: LinkedinIcon },
-  { label: "blog", href: "/blog", icon: BlogIcon, note: "coming soon" },
+  { label: "blog", href: "/blog", icon: BlogIcon },
   { label: "contact", href: "mailto:hello@kylebolton.me", icon: MailIcon },
 ];
 
@@ -122,23 +122,13 @@ export default function Home() {
             {links.map((l, i) => (
               <li key={l.label} className={item}>
                 <Reveal delay={i * 0.06}>
-                  {l.note ? (
-                    <div className={row}>
-                      <span className="flex-1 text-2xl font-light tracking-tight text-muted md:text-3xl">
-                        {l.label}
-                        <span className="label ml-3 align-middle">{l.note}</span>
-                      </span>
-                      <l.icon className="size-4 text-muted" />
-                    </div>
-                  ) : (
-                    <Link href={l.href} className={row}>
-                      <span className={marker} />
-                      <span className={`flex-1 text-2xl font-light tracking-tight md:text-3xl ${nudge}`}>
-                        {l.label}
-                      </span>
-                      <l.icon className="size-4 text-muted transition-colors group-hover:text-foreground group-active:text-foreground group-focus-visible:text-foreground" />
-                    </Link>
-                  )}
+                  <Link href={l.href} className={row}>
+                    <span className={marker} />
+                    <span className={`flex-1 text-2xl font-light tracking-tight md:text-3xl ${nudge}`}>
+                      {l.label}
+                    </span>
+                    <l.icon className="size-4 text-muted transition-colors group-hover:text-foreground group-active:text-foreground group-focus-visible:text-foreground" />
+                  </Link>
                 </Reveal>
               </li>
             ))}

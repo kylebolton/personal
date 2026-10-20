@@ -41,11 +41,20 @@ function Inline({ text }: { text: string }) {
 export function PostBody({
   blocks,
   references,
+  figures,
 }: {
   blocks: Block[];
   references?: Reference[];
+  figures?: Record<string, ReactNode>;
 }) {
   const nodes: ReactNode[] = blocks.map((b, i) => {
+    if (b.type === "figure") {
+      return (
+        <div key={i} className="py-6">
+          {figures?.[b.id]}
+        </div>
+      );
+    }
     if (b.type === "h2") {
       return (
         <h2 key={i} className="pt-8 text-2xl font-light tracking-tight text-foreground md:text-3xl">
@@ -73,7 +82,7 @@ export function PostBody({
   });
 
   return (
-    <div className="space-y-6 text-lg leading-relaxed text-muted md:text-xl md:leading-relaxed">
+    <div className="space-y-6 text-lg leading-relaxed text-foreground md:text-xl md:leading-relaxed">
       {nodes}
       {references && references.length > 0 && (
         <section className="mt-16 border-t hairline pt-8">

@@ -4,10 +4,16 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { FixedCreditChart } from "@/components/blog/FixedCreditChart";
 import { PostBody } from "@/components/blog/PostBody";
+import { YieldsChart } from "@/components/blog/YieldsChart";
 import { formatDate, getPost, posts } from "@/content/posts";
 
 const heroes: Record<string, ReactNode> = {
   "fixed-credit-the-next-step-in-defi": <FixedCreditChart className="h-auto w-full" />,
+};
+
+/** Inline figures referenced by `{ type: "figure", id }` blocks. */
+const figures: Record<string, ReactNode> = {
+  "yields-promised-vs-actual": <YieldsChart />,
 };
 
 export const dynamicParams = false;
@@ -93,11 +99,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           {heroes[post.slug] && <div className="mt-12">{heroes[post.slug]}</div>}
 
           <div className="mt-12">
-            {post.blocks ? (
-              <PostBody blocks={post.blocks} references={post.references} />
-            ) : (
-              <LegacyBody post={post} />
-            )}
+            <PostBody blocks={post.blocks} references={post.references} figures={figures} />
           </div>
         </article>
       </main>
@@ -105,33 +107,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <footer className="flex items-center justify-between border-t hairline py-8">
         <Link href="/blog" className="label hover:text-foreground">all posts</Link>
       </footer>
-    </div>
-  );
-}
-
-const prose = "space-y-6 text-lg leading-relaxed text-muted md:text-xl md:leading-relaxed";
-
-function LegacyBody({ post }: { post: NonNullable<ReturnType<typeof getPost>> }) {
-  return (
-    <div className="space-y-12">
-      <div className={prose}>
-        {post.body?.map((para, i) => <p key={i}>{para}</p>)}
-      </div>
-      {post.timeline && (
-        <ol className="border-t hairline">
-          {post.timeline.map(t => (
-            <li key={t.label} className="grid gap-2 border-b hairline py-6 md:grid-cols-[8rem_1fr] md:gap-6">
-              <span className="label">{t.label}</span>
-              <span className="text-lg text-foreground md:text-xl">{t.text}</span>
-            </li>
-          ))}
-        </ol>
-      )}
-      {post.afterTimeline && (
-        <div className={prose}>
-          {post.afterTimeline.map((para, i) => <p key={i}>{para}</p>)}
-        </div>
-      )}
     </div>
   );
 }

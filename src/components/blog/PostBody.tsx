@@ -68,9 +68,11 @@ export function PostBody({
     }
     if (b.type === "quote") {
       return (
-        <figure key={i} className="!my-14 border-y hairline py-10 md:-mx-12 md:py-12">
-          <span aria-hidden="true" className="block size-2 rounded-full bg-blue" />
-          <blockquote className="mt-6 text-2xl font-light italic leading-snug tracking-tight text-foreground md:text-3xl md:leading-snug">
+        <figure key={i} className="!my-16 mx-auto max-w-[34rem] text-center">
+          <span aria-hidden="true" className="block h-12 text-[5.5rem] leading-none text-blue">
+            &ldquo;
+          </span>
+          <blockquote className="text-balance text-3xl font-light italic leading-[1.2] tracking-tight text-foreground md:text-4xl md:leading-[1.2]">
             {b.text}
           </blockquote>
           {b.attribution && <figcaption className="label mt-6">{b.attribution}</figcaption>}
@@ -79,8 +81,7 @@ export function PostBody({
     }
     if (b.type === "h2") {
       return (
-        // A quote just above already draws the rule, so skip a second hairline.
-        <div key={i} className={blocks[i - 1]?.type === "quote" ? "!mt-0" : "!mt-12 border-t hairline pt-10"}>
+        <div key={i} className="!mt-20">
           {b.kicker && <p className="label mb-4">{b.kicker}</p>}
           <h2 className="text-3xl font-normal leading-tight tracking-tight text-foreground md:text-4xl">
             {b.text}

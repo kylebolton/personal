@@ -57,7 +57,7 @@ export function PostBody({
     }
     if (b.type === "h2") {
       return (
-        <h2 key={i} className="pt-8 text-2xl font-normal tracking-tight text-foreground md:text-3xl">
+        <h2 key={i} className="mt-6 border-t hairline pt-10 text-3xl font-normal leading-tight tracking-tight text-foreground md:text-4xl">
           {b.text}
         </h2>
       );

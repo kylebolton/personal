@@ -3,31 +3,36 @@ import type { Block, Reference } from "./posts";
 export const fixedCreditBlocks: Block[] = [
   {
     "type": "p",
-    "text": "DeFi lending has frustrated me for years. The technology is good. You can post collateral and borrow dollars in one transaction, at three in the morning, without asking anyone's permission. The frustration starts after you click borrow."
+    "text": "DeFi lending has frustrated me for years. The promise is simple: post collateral, borrow dollars in one transaction, at three in the morning, without asking anyone's permission. What nobody tells you is what happens to the rate after you click borrow."
   },
   {
     "type": "p",
-    "text": "On a quiet day I can borrow USDC on a blue-chip platform for around 5%. That lasts until it doesn't. Right now, borrowing USDC on HyperCore costs around 10%, about double a quiet-day rate, and nothing is broken. It's what the rate model produces when enough people want dollars at once. Next month it could be 4%, or 15%."
+    "text": "On a quiet day I can borrow USDC on a blue-chip platform for around 5%. That lasts until it doesn't. Right now, borrowing USDC on HyperCore costs around 10%, about double a quiet-day rate, and nothing is broken. It's simply what the rate model produces when enough people want dollars at the same time. Next month it could be 4%, or 15%."
   },
   {
     "type": "p",
-    "text": "Anyone who has borrowed on-chain knows the routine. You watch the rate, redo the sums, and end up managing a position that was supposed to be a loan. Lenders sometimes catch an outlandish return (200% APY for a few hours), which is a payment for being in the pool when liquidity ran out. Nobody can plan around it."
+    "text": "If you've borrowed on-chain, you know the routine. You watch the rate, redo the sums, and end up managing a position that was supposed to be a simple loan. Lenders sometimes catch an outlandish return (200% APY for a few hours), but that's a payment for being in the pool when liquidity ran out, and you can't plan around it."
   },
   {
     "type": "p",
-    "text": "I've worked in consumer credit and lending in traditional finance for around five years, and I still do. The customers I've worked with would never accept a rate that can move 10 percentage points or more while their money is out on loan, or while they owe it. A move of 1% already generates calls. On-chain, a swing ten times that is routine, and I think it's the main reason consumers and businesses haven't shown up."
+    "text": "I've worked in consumer credit and lending in traditional finance for around five years. The customers I've worked with would never accept a rate that can move 10 percentage points or more while their money is out on loan, or while they owe it. A move of 1% already generates calls. On-chain, a swing ten times that is routine, and I think that's the main reason consumers and businesses haven't shown up."
+  },
+  {
+    "type": "quote",
+    "text": "A move of 1% already generates calls. On-chain, a swing ten times that is routine."
   },
   {
     "type": "h2",
+    "kicker": "the mechanics",
     "text": "Why the rate moves"
   },
   {
     "type": "p",
-    "text": "Most on-chain money markets set the rate from utilization, the share of a pool that is currently borrowed. The more that's out, the higher the rate. Above a target level (the \"kink\") the curve turns steep, so borrowers repay and new lenders arrive. On Aave's main USDC market on Ethereum the target is 92%, and between 92% and 100% the borrow rate climbs from about 4% to 14% [1]. HyperCore's native lending, launched in September with HYPE and BTC as collateral, also sets stablecoin rates by utilization [2][3]."
+    "text": "Here's what's going on underneath. Most on-chain money markets set the rate from utilization, the share of a pool that is currently borrowed. The more that's out, the higher the rate. Above a target level (the \"kink\") the curve turns steep, so borrowers repay and new lenders arrive. On Aave's main USDC market on Ethereum the target is 92%, and between 92% and 100% the borrow rate climbs from about 4% to 14% [1]. HyperCore's native lending, launched in September with HYPE and BTC as collateral, also sets stablecoin rates by utilization [2][3]."
   },
   {
     "type": "p",
-    "text": "The model keeps a pool liquid. The side effect is that your rate depends on what everyone else in the pool does tonight. Two cases from this year:"
+    "text": "That keeps the pool liquid, which is the point. The catch is that your rate now depends on what everyone else in the pool does tonight. Two cases from this year:"
   },
   {
     "type": "ul",
@@ -42,6 +47,7 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "h2",
+    "kicker": "the numbers",
     "text": "The yields aren't real"
   },
   {
@@ -51,6 +57,10 @@ export const fixedCreditBlocks: Block[] = [
   {
     "type": "p",
     "text": "The lender's side of the curve mirrors the borrower's. When a pool runs dry the supply rate shoots up, and when liquidity returns it falls back. In April, under the curve Circle proposed for Aave's USDC market, the supply rate at full utilization would have reached about 48%, in a pool where suppliers couldn't withdraw [4]. A number like that is the price of an emergency."
+  },
+  {
+    "type": "quote",
+    "text": "A number like that is the price of an emergency."
   },
   {
     "type": "p",
@@ -66,7 +76,8 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "figure",
-    "id": "yields-promised-vs-actual"
+    "id": "yields-promised-vs-actual",
+    "caption": "Headline rates against April 2026 rates. No single lender earned all of them."
   },
   {
     "type": "p",
@@ -74,6 +85,7 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "h2",
+    "kicker": "the warning",
     "text": "The 7% app"
   },
   {
@@ -89,7 +101,12 @@ export const fixedCreditBlocks: Block[] = [
     "text": "The history is long. Terra's Anchor protocol offered about 20% on UST and at its peak held around $14B, roughly 74% of UST's circulating supply [10]. It needed a $450M injection to keep its yield reserve from running dry [11]. Celsius was still advertising up to 18.63% APY in July 2022, days before its bankruptcy [12]. BlockFi paid $100M to settle with the SEC and 32 states over its interest accounts [13]. In each case the number on the screen said little about the risk behind it."
   },
   {
+    "type": "quote",
+    "text": "In each case the number on the screen said little about the risk behind it."
+  },
+  {
     "type": "h2",
+    "kicker": "the precedent",
     "text": "What consumer credit already figured out"
   },
   {
@@ -105,7 +122,12 @@ export const fixedCreditBlocks: Block[] = [
     "text": "Traditional finance also built enormous markets to turn floating rates into fixed ones. At the end of June 2025, OTC derivatives had $846 trillion in notional outstanding, and interest rate contracts were 79% of that [16]. The world pays a lot to manage rate risk, and DeFi has built very little of the equivalent."
   },
   {
+    "type": "quote",
+    "text": "The world pays a lot to manage rate risk, and DeFi has built very little of the equivalent."
+  },
+  {
     "type": "h2",
+    "kicker": "the fix",
     "text": "What fixed credit looks like on-chain"
   },
   {
@@ -130,6 +152,7 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "h2",
+    "kicker": "the payoff",
     "text": "Who benefits"
   },
   {
@@ -151,6 +174,10 @@ export const fixedCreditBlocks: Block[] = [
   {
     "type": "p",
     "text": "DeFi built the floating-rate market first, and it does its job well. The next piece is a market where the rate you see at the start is the rate you pay until maturity."
+  },
+  {
+    "type": "quote",
+    "text": "The next piece is a market where the rate you see at the start is the rate you pay until maturity."
   }
 ];
 

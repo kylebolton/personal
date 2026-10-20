@@ -1,11 +1,14 @@
 import { fixedCreditBlocks, fixedCreditReferences } from "./fixed-credit";
 
 export type Block =
-  | { type: "h2"; text: string }
+  /** `kicker` is a short lowercase label shown above the heading. */
+  | { type: "h2"; text: string; kicker?: string }
   | { type: "p"; text: string }
   | { type: "ul"; items: string[] }
+  /** A pull quote, set wider than the body column on desktop. */
+  | { type: "quote"; text: string; attribution?: string }
   /** A chart or illustration, looked up by id in the post page. */
-  | { type: "figure"; id: string };
+  | { type: "figure"; id: string; caption?: string };
 
 export type Reference = { text: string; href: string };
 
@@ -16,6 +19,8 @@ export type Post = {
   date: string;
   readingTime: string;
   summary: string;
+  /** Standfirst under the title. Falls back to the summary. */
+  dek?: string;
   blocks: Block[];
   references?: Reference[];
   /** Social share image path under /public (1200x630). Falls back to the site image. */

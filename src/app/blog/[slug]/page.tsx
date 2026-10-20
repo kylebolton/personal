@@ -90,10 +90,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             {post.title}
             <span className="text-sun">.</span>
           </h1>
-          <p className="label mt-6">
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
+          <p className="mt-8 text-xl font-light italic leading-snug text-foreground md:text-2xl md:leading-snug">
+            {post.dek ?? post.summary}
+          </p>
+          <p className="label mt-6 border-t hairline pt-4">
+            by kyle bolton
             <span className="mx-3" aria-hidden="true">/</span>
-            {post.readingTime}
+            london
+            <span className="mx-3" aria-hidden="true">/</span>
+            <time dateTime={post.date} className="whitespace-nowrap">{formatDate(post.date)}</time>
+            <span className="mx-3" aria-hidden="true">/</span>
+            <span className="whitespace-nowrap">{post.readingTime}</span>
           </p>
 
           {heroes[post.slug] && <div className="mt-12">{heroes[post.slug]}</div>}

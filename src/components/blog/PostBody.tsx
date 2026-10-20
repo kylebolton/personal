@@ -4,6 +4,10 @@ import type { Block, Reference } from "@/content/posts";
 const link =
   "text-foreground underline decoration-1 decoration-hairline underline-offset-4 transition-colors hover:decoration-foreground active:decoration-foreground";
 
+/** Three-line serif initial on the opening paragraph. */
+const dropCap =
+  "first-letter:float-left first-letter:mr-3 first-letter:mt-[0.1em] first-letter:text-[4.1em] first-letter:font-light first-letter:leading-[0.8] first-letter:text-foreground";
+
 /** Renders **bold** and [n] / [n][m] citation markers. */
 function Inline({ text }: { text: string }) {
   const parts = text.split(/(\*\*[^*]+\*\*|(?:\[\d+\])+)/g);
@@ -47,19 +51,41 @@ export function PostBody({
   references?: Reference[];
   figures?: Record<string, ReactNode>;
 }) {
+  const firstP = blocks.findIndex(b => b.type === "p");
+
   const nodes: ReactNode[] = blocks.map((b, i) => {
     if (b.type === "figure") {
       return (
-        <div key={i} className="py-6">
+        <figure key={i} className="!my-10 border-y hairline py-6">
           {figures?.[b.id]}
-        </div>
+          {b.caption && (
+            <figcaption className="mt-4 font-mono text-xs font-light leading-relaxed tracking-[0.04em] text-muted">
+              {b.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    }
+    if (b.type === "quote") {
+      return (
+        <figure key={i} className="!my-14 border-y hairline py-10 md:-mx-12 md:py-12">
+          <span aria-hidden="true" className="block size-2 rounded-full bg-blue" />
+          <blockquote className="mt-6 text-2xl font-light italic leading-snug tracking-tight text-foreground md:text-3xl md:leading-snug">
+            {b.text}
+          </blockquote>
+          {b.attribution && <figcaption className="label mt-6">{b.attribution}</figcaption>}
+        </figure>
       );
     }
     if (b.type === "h2") {
       return (
-        <h2 key={i} className="mt-6 border-t hairline pt-10 text-3xl font-normal leading-tight tracking-tight text-foreground md:text-4xl">
-          {b.text}
-        </h2>
+        // A quote just above already draws the rule, so skip a second hairline.
+        <div key={i} className={blocks[i - 1]?.type === "quote" ? "!mt-0" : "!mt-12 border-t hairline pt-10"}>
+          {b.kicker && <p className="label mb-4">{b.kicker}</p>}
+          <h2 className="text-3xl font-normal leading-tight tracking-tight text-foreground md:text-4xl">
+            {b.text}
+          </h2>
+        </div>
       );
     }
     if (b.type === "ul") {
@@ -75,7 +101,7 @@ export function PostBody({
       );
     }
     return (
-      <p key={i}>
+      <p key={i} className={i === firstP ? dropCap : undefined}>
         <Inline text={b.text} />
       </p>
     );

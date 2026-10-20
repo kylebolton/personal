@@ -18,7 +18,12 @@ export const fixedCreditBlocks: Block[] = [
     "text": "I've worked in consumer credit and lending in traditional finance for around five years. The customers I've worked with would never accept a rate that can move 10 percentage points or more while their money is out on loan, or while they owe it. A move of 1% already generates calls. On-chain, a swing ten times that is routine, and I think that's the main reason consumers and businesses haven't shown up."
   },
   {
+    "type": "quote",
+    "text": "A move of 1% already generates calls. On-chain, a swing ten times that is routine."
+  },
+  {
     "type": "h2",
+    "kicker": "the mechanics",
     "text": "Why the rate moves"
   },
   {
@@ -42,6 +47,7 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "h2",
+    "kicker": "the numbers",
     "text": "The yields aren't real"
   },
   {
@@ -51,6 +57,10 @@ export const fixedCreditBlocks: Block[] = [
   {
     "type": "p",
     "text": "The lender's side of the curve mirrors the borrower's. When a pool runs dry the supply rate shoots up, and when liquidity returns it falls back. In April, under the curve Circle proposed for Aave's USDC market, the supply rate at full utilization would have reached about 48%, in a pool where suppliers couldn't withdraw [4]. A number like that is the price of an emergency."
+  },
+  {
+    "type": "quote",
+    "text": "A number like that is the price of an emergency."
   },
   {
     "type": "p",
@@ -66,7 +76,8 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "figure",
-    "id": "yields-promised-vs-actual"
+    "id": "yields-promised-vs-actual",
+    "caption": "Headline rates against April 2026 rates. No single lender earned all of them."
   },
   {
     "type": "p",
@@ -74,6 +85,7 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "h2",
+    "kicker": "the warning",
     "text": "The 7% app"
   },
   {
@@ -89,7 +101,12 @@ export const fixedCreditBlocks: Block[] = [
     "text": "The history is long. Terra's Anchor protocol offered about 20% on UST and at its peak held around $14B, roughly 74% of UST's circulating supply [10]. It needed a $450M injection to keep its yield reserve from running dry [11]. Celsius was still advertising up to 18.63% APY in July 2022, days before its bankruptcy [12]. BlockFi paid $100M to settle with the SEC and 32 states over its interest accounts [13]. In each case the number on the screen said little about the risk behind it."
   },
   {
+    "type": "quote",
+    "text": "In each case the number on the screen said little about the risk behind it."
+  },
+  {
     "type": "h2",
+    "kicker": "the precedent",
     "text": "What consumer credit already figured out"
   },
   {
@@ -105,7 +122,12 @@ export const fixedCreditBlocks: Block[] = [
     "text": "Traditional finance also built enormous markets to turn floating rates into fixed ones. At the end of June 2025, OTC derivatives had $846 trillion in notional outstanding, and interest rate contracts were 79% of that [16]. The world pays a lot to manage rate risk, and DeFi has built very little of the equivalent."
   },
   {
+    "type": "quote",
+    "text": "The world pays a lot to manage rate risk, and DeFi has built very little of the equivalent."
+  },
+  {
     "type": "h2",
+    "kicker": "the fix",
     "text": "What fixed credit looks like on-chain"
   },
   {
@@ -130,6 +152,7 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "h2",
+    "kicker": "the payoff",
     "text": "Who benefits"
   },
   {
@@ -151,6 +174,10 @@ export const fixedCreditBlocks: Block[] = [
   {
     "type": "p",
     "text": "DeFi built the floating-rate market first, and it does its job well. The next piece is a market where the rate you see at the start is the rate you pay until maturity."
+  },
+  {
+    "type": "quote",
+    "text": "The next piece is a market where the rate you see at the start is the rate you pay until maturity."
   }
 ];
 

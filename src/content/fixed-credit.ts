@@ -42,6 +42,14 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "h2",
+    "text": "The yields aren't real"
+  },
+  {
+    "type": "p",
+    "text": "A quoted yield describes one moment in a pool. It is the rate at today's utilization, annualised, and nothing guarantees it will last a week. On the lender's side the curve mirrors the borrower's: when a pool runs dry the supply rate shoots up, and when liquidity returns it falls back. In April, under the curve Circle proposed for Aave's USDC market, the supply rate at full utilization would have reached about 48%, in a pool where suppliers couldn't withdraw [4]. A number like that on a screen is the price of an emergency. Some pools add token incentives on top, which last as long as the budget does. Over a year, what a lender actually earns depends on every day in between, and the headline figure covers only one of them."
+  },
+  {
+    "type": "h2",
     "text": "The 7% app"
   },
   {

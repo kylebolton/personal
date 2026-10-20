@@ -81,12 +81,12 @@ export function PostBody({
     }
     if (b.type === "h2") {
       return (
-        <div key={i} className="!mt-20">
-          {b.kicker && <p className="label mb-4">{b.kicker}</p>}
-          <h2 className="text-3xl font-normal leading-tight tracking-tight text-foreground md:text-4xl">
-            {b.text}
-          </h2>
-        </div>
+        <h2
+          key={i}
+          className="!mt-20 text-3xl font-normal leading-tight tracking-tight text-foreground md:text-4xl"
+        >
+          {b.text}
+        </h2>
       );
     }
     if (b.type === "ul") {
@@ -112,7 +112,7 @@ export function PostBody({
     <div className="space-y-6 text-lg leading-relaxed text-foreground md:text-xl md:leading-relaxed">
       {nodes}
       {references && references.length > 0 && (
-        <section className="mt-16 border-t hairline pt-8">
+        <section className="mt-16">
           <h2 className="label">references</h2>
           <ol className="mt-6 list-none space-y-4 text-sm leading-relaxed text-muted md:text-base">
             {references.map((r, i) => (

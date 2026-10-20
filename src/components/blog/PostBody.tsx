@@ -82,7 +82,7 @@ export function PostBody({
   });
 
   return (
-    <div className="space-y-6 text-lg leading-relaxed text-muted md:text-xl md:leading-relaxed">
+    <div className="space-y-6 text-lg leading-relaxed text-foreground md:text-xl md:leading-relaxed">
       {nodes}
       {references && references.length > 0 && (
         <section className="mt-16 border-t hairline pt-8">

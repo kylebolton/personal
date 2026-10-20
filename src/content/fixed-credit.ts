@@ -3,19 +3,19 @@ import type { Block, Reference } from "./posts";
 export const fixedCreditBlocks: Block[] = [
   {
     "type": "p",
-    "text": "DeFi lending has frustrated me for years. The technology is good. You can post collateral and borrow dollars in one transaction, at three in the morning, without asking anyone's permission. The frustration starts after you click borrow."
+    "text": "DeFi lending has frustrated me for years. The promise is simple: post collateral, borrow dollars in one transaction, at three in the morning, without asking anyone's permission. What nobody tells you is what happens to the rate after you click borrow."
   },
   {
     "type": "p",
-    "text": "On a quiet day I can borrow USDC on a blue-chip platform for around 5%. That lasts until it doesn't. Right now, borrowing USDC on HyperCore costs around 10%, about double a quiet-day rate, and nothing is broken. It's what the rate model produces when enough people want dollars at once. Next month it could be 4%, or 15%."
+    "text": "On a quiet day I can borrow USDC on a blue-chip platform for around 5%. That lasts until it doesn't. Right now, borrowing USDC on HyperCore costs around 10%, about double a quiet-day rate, and nothing is broken. It's simply what the rate model produces when enough people want dollars at the same time. Next month it could be 4%, or 15%."
   },
   {
     "type": "p",
-    "text": "Anyone who has borrowed on-chain knows the routine. You watch the rate, redo the sums, and end up managing a position that was supposed to be a loan. Lenders sometimes catch an outlandish return (200% APY for a few hours), which is a payment for being in the pool when liquidity ran out. Nobody can plan around it."
+    "text": "If you've borrowed on-chain, you know the routine. You watch the rate, redo the sums, and end up managing a position that was supposed to be a simple loan. Lenders sometimes catch an outlandish return (200% APY for a few hours), but that's a payment for being in the pool when liquidity ran out, and you can't plan around it."
   },
   {
     "type": "p",
-    "text": "I've worked in consumer credit and lending in traditional finance for around five years, and I still do. The customers I've worked with would never accept a rate that can move 10 percentage points or more while their money is out on loan, or while they owe it. A move of 1% already generates calls. On-chain, a swing ten times that is routine, and I think it's the main reason consumers and businesses haven't shown up."
+    "text": "I've worked in consumer credit and lending in traditional finance for around five years. The customers I've worked with would never accept a rate that can move 10 percentage points or more while their money is out on loan, or while they owe it. A move of 1% already generates calls. On-chain, a swing ten times that is routine, and I think that's the main reason consumers and businesses haven't shown up."
   },
   {
     "type": "h2",
@@ -23,11 +23,11 @@ export const fixedCreditBlocks: Block[] = [
   },
   {
     "type": "p",
-    "text": "Most on-chain money markets set the rate from utilization, the share of a pool that is currently borrowed. The more that's out, the higher the rate. Above a target level (the \"kink\") the curve turns steep, so borrowers repay and new lenders arrive. On Aave's main USDC market on Ethereum the target is 92%, and between 92% and 100% the borrow rate climbs from about 4% to 14% [1]. HyperCore's native lending, launched in September with HYPE and BTC as collateral, also sets stablecoin rates by utilization [2][3]."
+    "text": "Here's what's going on underneath. Most on-chain money markets set the rate from utilization, the share of a pool that is currently borrowed. The more that's out, the higher the rate. Above a target level (the \"kink\") the curve turns steep, so borrowers repay and new lenders arrive. On Aave's main USDC market on Ethereum the target is 92%, and between 92% and 100% the borrow rate climbs from about 4% to 14% [1]. HyperCore's native lending, launched in September with HYPE and BTC as collateral, also sets stablecoin rates by utilization [2][3]."
   },
   {
     "type": "p",
-    "text": "The model keeps a pool liquid. The side effect is that your rate depends on what everyone else in the pool does tonight. Two cases from this year:"
+    "text": "That keeps the pool liquid, which is the point. The catch is that your rate now depends on what everyone else in the pool does tonight. Two cases from this year:"
   },
   {
     "type": "ul",

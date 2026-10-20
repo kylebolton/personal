@@ -41,11 +41,20 @@ function Inline({ text }: { text: string }) {
 export function PostBody({
   blocks,
   references,
+  figures,
 }: {
   blocks: Block[];
   references?: Reference[];
+  figures?: Record<string, ReactNode>;
 }) {
   const nodes: ReactNode[] = blocks.map((b, i) => {
+    if (b.type === "figure") {
+      return (
+        <div key={i} className="py-6">
+          {figures?.[b.id]}
+        </div>
+      );
+    }
     if (b.type === "h2") {
       return (
         <h2 key={i} className="pt-8 text-2xl font-light tracking-tight text-foreground md:text-3xl">

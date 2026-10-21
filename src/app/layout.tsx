@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Kyle Bolton",
+        alt: "Kyle Bolton, senior engineer in credit and lending",
       },
     ],
   },

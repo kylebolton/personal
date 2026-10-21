@@ -72,31 +72,6 @@ fs.writeFileSync(
   appleIcon.toBuffer("image/png")
 );
 
-// Create OG image (1200x630)
-const ogCanvas = createCanvas(1200, 630);
-const ogCtx = ogCanvas.getContext("2d");
-
-// Background
-ogCtx.fillStyle = "#111111";
-ogCtx.fillRect(0, 0, 1200, 630);
-
-// Add name
-ogCtx.font = "bold 80px Arial";
-ogCtx.textAlign = "center";
-ogCtx.textBaseline = "middle";
-ogCtx.fillStyle = "white";
-ogCtx.fillText("Kyle Bolton", 600, 250);
-
-// Add description
-ogCtx.font = "40px Arial";
-ogCtx.fillText("UI Engineer & Fintech Enthusiast", 600, 350);
-
-// Save OG image
-fs.writeFileSync(
-  path.join(publicDir, "og-image.png"),
-  ogCanvas.toBuffer("image/png")
-);
-
 // Create a site manifest
 const manifest = {
   name: "Kyle Bolton",
@@ -131,4 +106,4 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="
 
 fs.writeFileSync(path.join(iconsDir, "safari-pinned-tab.svg"), svgContent);
 
-console.log("All icons and images generated successfully!");
+console.log("All icons generated successfully!");
